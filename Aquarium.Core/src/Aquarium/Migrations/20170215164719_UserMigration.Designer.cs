@@ -9,8 +9,8 @@ using Aquarium.Data;
 namespace Aquarium.Migrations
 {
     [DbContext(typeof(AquariumContext))]
-    [Migration("20170215151843_InitizalizationMigration")]
-    partial class InitizalizationMigration
+    [Migration("20170215164719_UserMigration")]
+    partial class UserMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
