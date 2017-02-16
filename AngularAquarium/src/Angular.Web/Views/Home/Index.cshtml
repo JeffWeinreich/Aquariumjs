@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row" ng-controller="TodoListController as tlc" ng-cloak>
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">ToDo List</h3>
+            </div>
+            <ol class="list-group">
+
+                <li class="list-group-item clearfix" ng-repeat="item in tlc.TodoList">
+                    <div class="col-sm-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="item.isDone" ng-true-value="true" ng-false-value="false" />
+                                {{item.name}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-danger" ng-click="tlc.Remove(item)">Remove</button>
+                    </div>
+                </li>
+
+                <li class="list-group-item clearfix" ng-init="item = {}">
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" placeholder="Name" ng-model="item.name"/>
+                    </div>
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary" ng-click="tlc.Add(item)">Add</button>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
