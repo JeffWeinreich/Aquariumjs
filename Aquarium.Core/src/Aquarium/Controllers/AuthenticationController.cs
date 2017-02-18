@@ -27,7 +27,7 @@ namespace Aquarium.Controllers
         // GET: /<controller>/
         public IActionResult Login()
         {
-            return View();
+            return Ok();
         }
 
         [HttpPost]
@@ -41,31 +41,31 @@ namespace Aquarium.Controllers
                 
                 if(result.Succeeded)
                 {
-                    return Redirect("~/");
+                    return Ok("~/");
                 }
                 else if(result.IsLockedOut)
                 {
-                    return View("LockedOut");
+                    return Ok("LockedOut");
                 }
                 else if(result.IsNotAllowed)
                 {
-                    return View("IsNotAllowed");
+                    return Ok("IsNotAllowed");
                 }
                 else
                 {
-                    return View(model);
+                    return Ok(model);
                 }
             }
             else
             {
-                return View(model);
+                return Ok(model);
             }
         }
 
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            return Ok();
         }
 
         [HttpPost]
@@ -77,7 +77,7 @@ namespace Aquarium.Controllers
             var result = await UserManager.CreateAsync(user, model.Password);
             await SignInManager.PasswordSignInAsync(user, model.Password, false, false);
 
-            return View();
+            return Ok();
         }
 
     }

@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Add Fish";
+}
+
+<div class="row" ng-controller="AquariumController as ac" ng-cloak>
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Fish</h3>
+            </div>
+            <ol class="list-group">
+
+                <li class="list-group-item clearfix" ng-repeat="fish in ac.FishList">
+                    <div class="col-sm-8">
+                        <div class="checkbox">
+                            <label>
+                                
+                                {{fish.name}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-danger" ng-click="ac.Remove(fish)">Remove</button>
+                    </div>
+                </li>
+
+                <li class="list-group-item clearfix" ng-init="fish = {}">
+                    <div class="col-sm-8">
+                        <div>
+                            <input type="text" class="form-control" placeholder="Name" ng-model="fish.name" />
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Type" ng-model="fish.type" />
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Quantity" ng-model="fish.quantity" />
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Description" ng-model="fish.description" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary" ng-click="ac.Add(fish)">Add your fish!</button>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

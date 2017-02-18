@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Angular.Web.Controllers
 {
-    public class HomeController : Controller
+    public class AngularController : Controller
     {
         public IActionResult Index()
         {

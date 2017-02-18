@@ -3,17 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Aquarium.Models;
 using Aquarium.Data;
+using Aquarium.Models;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Aquarium.Controllers
 {
-    public class FishController : Controller
+    [Route("api/[controller]")]
+    public class FishesController : Controller
     {
 
-     private AquariumContext Context { get; set; }
+        private AquariumContext Context { get; set; }
+        public List<Fish> Fishes { get; set; }
+
+        public FishesController()
+        {
+            Context = new AquariumContext();
+            Fishes = new List<Fish>();
+        }
+
+
+        [HttpGet]
+        public List<Fish> Get()
+        {
+            return Context.Fishes.ToList();
+        }
+
 
         // GET api/values/5
         [HttpGet("{id}")]
