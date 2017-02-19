@@ -4,11 +4,13 @@
 }
 
 <body style="background-image:url(https://www.muralswallpaper.com//app/uploads/orange-starfish-underwater%EF%BB%BF-plain-1.jpg)">
+
+
    
         <h1 class="col-sm-offset-3" style="text-shadow:5px 5px 5px">Welcome To The Aquarium!</h1> 
     
-      @*<div class="row">*@
-        <div class="col-sm-3 col-sm-offset-9">
+      <div class="row" ng-controller="AccountController as ac" g-cloak>
+          <div class="col-sm-3 col-sm-offset-9">
             <h3 style="font-weight: bolder">Login:</h3>
             <form method="post" action="~/authentication/login">
                 <div class="form-group text-right">
@@ -21,8 +23,8 @@
             </form>
         </div>
 
-    @*</div>*@
-    @*<div class="row">*@ 
+    </div>
+    <div class="row"> 
     <div class="col-sm-3 col-sm-offset-9">
         <h3  style="font-weight: bolder; color:black">New to the Aquarium? </h3>
         <h3 style="font-weight: bolder; color:darkblue">Register below:</h3>                 
@@ -39,6 +41,6 @@
                     <button type="submit" class="btn btn-primary btn-block">Register</button>
                 </form>
         </div>
-    @*</div>*@
+    </div>
 
 </body>
