@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Aquarium.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Angular.Web
 {
@@ -27,6 +29,12 @@ namespace Angular.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AquariumContext>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                    .AddEntityFrameworkStores<AquariumContext>()
+                    .AddDefaultTokenProviders();
+
             // Add framework services.
             services.AddMvc();
         }

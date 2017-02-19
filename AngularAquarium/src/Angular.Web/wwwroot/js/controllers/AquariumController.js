@@ -10,7 +10,7 @@
 
         vm.Aquarium = [];
 
-        var promise = $http.get('api/fishes');
+        var promise = $http.get('/api/fishes');
 
         promise.then(function (result) {
             vm.Aquarium = result.data;
@@ -24,7 +24,7 @@
             fish.description = '';
             
 
-            var promise = $http.post('api/fishes', copy);
+            var promise = $http.post('/api/fishes', copy);
             promise.then(function (result) {
                 //success
                 vm.Aquarium.push(result.data);
@@ -35,7 +35,7 @@
         };
 
         vm.Remove = function (fish) {
-            var url = 'api/fishes/{id}'.replace('{id}', fish.id);
+            var url = '/api/fishes/{id}'.replace('{id}', fish.id);
             var promise = $http.delete(url);
             promise.then(function (result) {
                 var index = vm.Aquarium.indexOf(fish);

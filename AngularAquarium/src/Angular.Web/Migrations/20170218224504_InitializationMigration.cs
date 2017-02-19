@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Aquarium.Migrations
+namespace Angular.Web.Migrations
 {
-    public partial class UserMigration : Migration
+    public partial class InitializationMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

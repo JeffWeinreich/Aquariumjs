@@ -33,7 +33,7 @@ namespace Aquarium.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public object Get(int id)
+        public Fish Get(int id)
         {
             var fish = Context.Fishes.FirstOrDefault(q => q.Id == id);
             return fish;
@@ -43,7 +43,7 @@ namespace Aquarium.Controllers
         [HttpPost]
         public Fish Post([FromBody]Fish fish)
         {
-            var newFish = Context.Fishes.Add(fish);
+            Context.Fishes.Add(fish);
             Context.SaveChanges();
 
             return fish;
@@ -61,7 +61,7 @@ namespace Aquarium.Controllers
             newFish.Image = fish.Image;
 
             Context.SaveChanges();
-            return fish;
+            return newFish;
         }
 
         // DELETE api/values/5

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Aquarium.Data;
 
-namespace Aquarium.Migrations
+namespace Angular.Web.Migrations
 {
     [DbContext(typeof(AquariumContext))]
     partial class AquariumContextModelSnapshot : ModelSnapshot

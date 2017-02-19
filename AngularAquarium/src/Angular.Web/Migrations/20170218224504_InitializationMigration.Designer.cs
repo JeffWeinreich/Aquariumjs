@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Aquarium.Data;
 
-namespace Aquarium.Migrations
+namespace Angular.Web.Migrations
 {
     [DbContext(typeof(AquariumContext))]
-    [Migration("20170215204014_HopeThisWorksMigration")]
-    partial class HopeThisWorksMigration
+    [Migration("20170218224504_InitializationMigration")]
+    partial class InitializationMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

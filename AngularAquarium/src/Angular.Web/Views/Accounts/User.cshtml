@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ViewData["Title"] = "Register";
+}
+
+
+<div class="row" ng-controller="AccountController as ac" ng-cloak>
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Login</h3>
+            </div>
+            <ol class="list-group">
+
+                <li class="list-group-item clearfix" ng-init="user = {}">
+                    <div class="col-sm-8">
+                        <div>
+                            <input type="text" class="form-control" placeholder="Email" ng-model="user.email" />
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Password" ng-model="user.password" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary" ng-click="ac.Login(user)">Login!</button>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="row" ng-controller="AccountController as ac" ng-cloak>
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Register</h3>
+            </div>
+            <ol class="list-group">
+
+                <li class="list-group-item clearfix" ng-init="user = {}">
+                    <div class="col-sm-8">
+                        <div>
+                            <input type="text" class="form-control" placeholder="Name" ng-model="user.name" />
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Email" ng-model="user.email" />
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Password" ng-model="user.password" />
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <button type="button" class="btn btn-primary" ng-click="ac.Add(user)">Register!</button>
+                    </div>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>

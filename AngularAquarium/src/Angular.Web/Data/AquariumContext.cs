@@ -10,17 +10,16 @@ namespace Aquarium.Data
 {
     public class AquariumContext : IdentityDbContext<ApplicationUser>
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Aquarium;Trusted_Connection=True;");
-            base.OnConfiguring(optionsBuilder);
-        }
         public DbSet<Fish> Fishes { get; set; }
-
 
         public AquariumContext() : base()
         {
 
+        }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=.\SQLEXPRESS;Database=Aquarium;Trusted_Connection=True;");
+            base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

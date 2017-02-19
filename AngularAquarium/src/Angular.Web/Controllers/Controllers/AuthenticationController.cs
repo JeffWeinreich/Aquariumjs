@@ -65,7 +65,7 @@ namespace Aquarium.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            return Redirect("~/home");
         }
 
         [HttpPost]
@@ -77,7 +77,7 @@ namespace Aquarium.Controllers
             var result = await UserManager.CreateAsync(user, model.Password);
             await SignInManager.PasswordSignInAsync(user, model.Password, false, false);
 
-            return View("~/home");
+            return View();
         }
 
     }
