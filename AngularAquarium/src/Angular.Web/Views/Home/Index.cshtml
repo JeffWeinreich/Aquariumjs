@@ -5,41 +5,39 @@
 
 <body style="background-image:url(https://www.muralswallpaper.com//app/uploads/orange-starfish-underwater%EF%BB%BF-plain-1.jpg)">
 
+    <h1 class="col-sm-offset-3" style="text-shadow:5px 5px 5px">Welcome To The Aquarium!</h1>
 
-   
-        <h1 class="col-sm-offset-3" style="text-shadow:5px 5px 5px">Welcome To The Aquarium!</h1> 
-    
-      <div class="row" ng-controller="AccountController as ac" g-cloak>
-          <div class="col-sm-3 col-sm-offset-9">
+    <div class="row" ng-controller="AccountController as ac" g-cloak>
+        <div class="col-sm-3 col-sm-offset-9">
             <h3 style="font-weight: bolder">Login:</h3>
             <form method="post" action="~/authentication/login">
                 <div class="form-group text-right">
-                    <input type="text" class="form-control" name="Email" placeholder="Email" />
+                    <input type="text" class="form-control" placeholder="Email" ng-model="user.email" />
                 </div>
                 <div class="form-group text-right">
-                    <input type="password" class="form-control" name="Password" placeholder="Password" />
+                    <input type="password" class="form-control" placeholder="Password" ng-model="user.password" />
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">Login</button>
             </form>
         </div>
 
-    </div>
-    <div class="row"> 
-    <div class="col-sm-3 col-sm-offset-9">
-        <h3  style="font-weight: bolder; color:black">New to the Aquarium? </h3>
-        <h3 style="font-weight: bolder; color:darkblue">Register below:</h3>                 
-                <form method="post" action="~/authentication/register">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="Name" placeholder="Name" />
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="Email" placeholder="Email" />
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" name="Password" placeholder="Password" />
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Register</button>
-                </form>
+    @*</div>
+    <div class="row">*@
+        <div class="col-sm-3 col-sm-offset-9">
+            <h3 style="font-weight: bolder; color:black">New to the Aquarium? </h3>
+            <h3 style="font-weight: bolder; color:darkblue">Register below:</h3>
+            <form method="post" action="~/authentication/register">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Name" ng-model="user.name" />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Email" ng-model="user.email" />
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" ng-model="user.password"/>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
         </div>
     </div>
 
