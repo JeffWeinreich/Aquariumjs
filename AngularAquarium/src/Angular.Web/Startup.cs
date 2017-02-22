@@ -31,7 +31,12 @@ namespace Angular.Web
         {
             services.AddDbContext<AquariumContext>();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = false;
+            })
                     .AddEntityFrameworkStores<AquariumContext>()
                     .AddDefaultTokenProviders();
 
@@ -56,7 +61,7 @@ namespace Angular.Web
             }
 
             app.UseStaticFiles();
-
+            app.UseIdentity();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

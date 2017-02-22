@@ -8,5 +8,7 @@ namespace Aquarium.Data
 {
     public class ApplicationUser : IdentityUser 
     {
+
+        public Guid Signature { get; set; }
     }
 }

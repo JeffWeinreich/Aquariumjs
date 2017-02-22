@@ -8,7 +8,7 @@ using Aquarium.Data;
 namespace Angular.Web.Migrations
 {
     [DbContext(typeof(AquariumContext))]
-    [Migration("20170218224504_InitializationMigration")]
+    [Migration("20170222141115_InitializationMigration")]
     partial class InitializationMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,8 @@ namespace Angular.Web.Migrations
 
                     b.Property<string>("SecurityStamp");
 
+                    b.Property<Guid>("Signature");
+
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
@@ -77,6 +79,8 @@ namespace Angular.Web.Migrations
                     b.Property<string>("Image");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("Owner");
 
                     b.Property<int>("Quantity");
 

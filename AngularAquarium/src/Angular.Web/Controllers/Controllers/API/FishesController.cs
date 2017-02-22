@@ -5,72 +5,156 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Aquarium.Data;
 using Aquarium.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Aquarium.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
+    [Authorize]
     public class FishesController : Controller
     {
+        private readonly AquariumContext _context;
+        private UserManager<ApplicationUser> _userManager { get; set; }
 
-        private AquariumContext Context { get; set; }
-        public List<Fish> Fishes { get; set; }
-
-        public FishesController()
+        public FishesController(UserManager<ApplicationUser> userManager, AquariumContext context)
         {
-            Context = new AquariumContext();
-            Fishes = new List<Fish>();
+            _userManager = userManager;
+            _context = context;
         }
 
 
         [HttpGet]
-        public List<Fish> Get()
+        public IEnumerable<Fish> GetFish()
         {
-            return Context.Fishes.ToList();
+            var userId = _userManager.GetUserId(User);
+            return _context.Fishes.Where(q => q.Owner == userId).ToList();
         }
 
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public Fish Get(int id)
+        public async Task<IActionResult> GetFish([FromRoute] int id)
         {
-            var fish = Context.Fishes.FirstOrDefault(q => q.Id == id);
-            return fish;
-        }
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        // POST api/values
-        [HttpPost]
-        public Fish Post([FromBody]Fish fish)
-        {
-            Context.Fishes.Add(fish);
-            Context.SaveChanges();
+            var userId = _userManager.GetUserId(User);
+            Fish fish = await _context.Fishes
+                .SingleOrDefaultAsync(p => p.Owner == userId && p.Id == id);
 
-            return fish;
+            if (fish == null)
+            {
+                return NotFound();
+            }
+
+            return Ok();
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public Fish Put(int id, [FromBody]Fish fish)
+        public async Task<IActionResult> PutFish([FromRoute] int id, [FromBody] Fish fish)
         {
-            var newFish = Context.Fishes.FirstOrDefault(q => q.Id == id);
-            newFish.Type = fish.Type;
-            newFish.Name = fish.Name;
-            newFish.Quantity = fish.Quantity;
-            newFish.Description = fish.Description;
-            newFish.Image = fish.Image;
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            Context.SaveChanges();
-            return newFish;
+            if (id != fish.Id)
+            {
+                return BadRequest();
+            }
+
+            fish.Owner = _userManager.GetUserId(User);
+            _context.Entry(fish).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!FishExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return NoContent();
+
+        }
+
+        // POST api/values
+        [HttpPost]
+        public async Task<IActionResult> PostFish([FromBody] Fish fish)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            fish.Owner = _userManager.GetUserId(User);
+            _context.Fishes.Add(fish);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if(FishExists(fish.Id))
+                {
+                    return new StatusCodeResult(StatusCodes.Status409Conflict);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtAction("GetFish", new { id = fish.Id }, fish);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> DeleteFish([FromRoute] int id)
         {
-            var fish = Context.Fishes.Find(id);
-            Context.Fishes.Remove(fish);
-            Context.SaveChanges();
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userId = _userManager.GetUserId(User);
+
+            Fish fish = await _context.Fishes
+                .Where(q => q.Owner == userId)
+                .SingleOrDefaultAsync(m => m.Id == id);
+
+            if(fish == null)
+            {
+                return NotFound();
+            }
+
+            _context.Fishes.Remove(fish);
+            await _context.SaveChangesAsync();
+
+            return Ok(fish);
+        }
+
+        private bool FishExists(int id)
+        {
+            var userId = _userManager.GetUserId(User);
+            return _context.Fishes.Any(e => e.Owner == userId && e.Id == id);
         }
     }
 }

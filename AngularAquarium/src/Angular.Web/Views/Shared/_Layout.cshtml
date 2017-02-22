@@ -8,7 +8,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js" type="text/javascript"></script>
     <script src="~/js/application.js" type="text/javascript"></script>
     <script src="~/js/controllers/aquariumcontroller.js" type="text/javascript"></script>
-    <script src="~/js/controllers/accountcontroller.js" type="text/javascript"></script>
+    
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -35,15 +35,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="home" asp-action="index">Home</a></li>
-                    <li><a asp-area="" asp-controller="home" asp-action="fishes">My Fish</a></li>
+                    <li><a asp-area="" asp-controller="home" asp-action="user">My Fish</a></li>
+                    <li><a href="~/accounts/login">Login</a></li>
+                    <li><a href="~/accounts/register">Register</a></li>
+                    <li><a href="~/accounts/logout">Logout</a></li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content" >
         @RenderBody()
-        <hr />
+        @*<hr />*@
 
     </div>
 

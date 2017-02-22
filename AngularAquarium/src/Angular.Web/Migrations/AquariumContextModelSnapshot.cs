@@ -49,6 +49,8 @@ namespace Angular.Web.Migrations
 
                     b.Property<string>("SecurityStamp");
 
+                    b.Property<Guid>("Signature");
+
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
@@ -76,6 +78,8 @@ namespace Angular.Web.Migrations
                     b.Property<string>("Image");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("Owner");
 
                     b.Property<int>("Quantity");
 

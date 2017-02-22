@@ -1,48 +1,29 @@
 ﻿(function () {
+    'use strict';
+
     var application = angular.module('Application');
 
     application.controller('AccountController', AccountController);
 
-    AccountController.$inject = ['$http'];
+    AccountController.$inject = ['$http', '$window'];
 
-    function AccountController($http) {
+    function AccountController($http, $window) {
         var vm = this;          //vm stands for view model, standard practice
 
-        vm.Account = [];
-
-        var promise = $http.get('api/user');
-
-        promise.then(function (result) {
-            vm.Account = result.data;
-        });
-
-        vm.Add = function (user) {
-            var copy = angular.copy(user);
-            user.name = '';
-            user.email = '';
-            user.password = '';
-            
-
-
-            var promise = $http.post('api/user', copy);
+        vm.Register = function (model) {
+            var promise = $http.post('/api/accounts/register', model);
             promise.then(function (result) {
-                //success
-                vm.Account.push(result.data);
-            }, function (result) {
-                //failure
+                $window.location.href='login';
             });
-
         };
 
-        vm.Remove = function (user) {
-            var url = 'api/user/{id}'.replace('{id}', user.id);
-            var promise = $http.delete(url);
+        vm.Login = function (model) {
+            var promise = $http.post('/api/accounts/login', model);
             promise.then(function (result) {
-                var index = vm.Account.indexOf(user);
-                vm.Account.splice(index, 1);
+                $window.location.href='/home/user';
             });
-
         };
+        
     }
 
 })();

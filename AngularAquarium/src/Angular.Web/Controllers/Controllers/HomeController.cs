@@ -20,5 +20,10 @@ namespace Angular.Web.Controllers     //Aquarium.Controllers
         {
             return View();
         }
+
+        public IActionResult User()
+        {
+            return View();
+        }
     }
 }

@@ -43,6 +43,11 @@
             });
 
         };
+
+        //vm.Clear = function (fish) {
+        //    var url = '/api/fishes/{id}'.relace('{id}', fish.id);
+        //    var promise = $
+        //}
     }
 
 })();
