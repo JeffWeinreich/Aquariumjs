@@ -10,10 +10,20 @@ namespace Angular.Web.Controllers     //Aquarium.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: /<controller>/
+       // GET: /<controller>/
         public IActionResult Index()
         {
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    return Redirect("~/home/user");
+            //}
+            //else
+            //{
+            //    return Redirect("~/accounts/login");
+            //}
+
             return View();
+
         }
 
         public IActionResult FishAdd()
@@ -25,5 +35,7 @@ namespace Angular.Web.Controllers     //Aquarium.Controllers
         {
             return View();
         }
+
+
     }
 }

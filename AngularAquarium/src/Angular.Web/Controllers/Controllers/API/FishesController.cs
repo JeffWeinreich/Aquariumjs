@@ -15,19 +15,19 @@ using Microsoft.AspNetCore.Http;
 namespace Aquarium.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/fishes")]
     [Authorize]
     public class FishesController : Controller
     {
         private readonly AquariumContext _context;
         private UserManager<ApplicationUser> _userManager { get; set; }
+        
 
         public FishesController(UserManager<ApplicationUser> userManager, AquariumContext context)
         {
             _userManager = userManager;
             _context = context;
         }
-
 
         [HttpGet]
         public IEnumerable<Fish> GetFish()
@@ -55,7 +55,7 @@ namespace Aquarium.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            return Ok(fish);
         }
 
         // PUT api/values/5
@@ -156,5 +156,7 @@ namespace Aquarium.Controllers
             var userId = _userManager.GetUserId(User);
             return _context.Fishes.Any(e => e.Owner == userId && e.Id == id);
         }
+
+
     }
 }

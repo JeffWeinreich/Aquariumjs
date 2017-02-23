@@ -7,29 +7,29 @@
 @{ViewData["Title"] = "Your Fish";
 }
 
-<table class="table" ng-controller="AquariumController aqc">
-<tbody>
-    <tr ng-repeat="fish in aqc.Fishes">
-        <td>{{fish.id}}</td>
-        <td>{{fish.name}}</td>
-        <td>{{fish.quantity}}</td>
-        <td>{{fish.description}}</td>
-        <td>
-            <button class="btn btn-default" ng-click="aqc.Remove(fish)">Remove</button>
-        </td>
-    </tr>
-    <tr ng-init="fish = {}">
-        <td>
-            <input class="form-control" ng-model="fish.name" /> 
-        </td>
-        <td>
-            <button ng-click="aqc.Add(fish)">Add</button>
-        </td>
-    </tr>
-</tbody>
+<table class="table" ng-controller="AquariumController as aqc">
+    <tbody>
+        <tr ng-repeat="fish in aqc.Fishes">
+            <td>Name: {{fish.name}}</td>
+            <td>{{fish.type}}</td>
+            <td>{{fish.description}}</td>
+            
+            
+            <td>
+                <button class="btn btn-default" ng-click="aqc.Remove(fish)">Remove</button>
+            </td>
+        </tr>
+        <tr ng-init="fish = {}">
+            @*<td>
+                <input class="form-control" ng-model="fish.name" />
+                <
+            </td>*@
+            
+
+        </tr>
+    </tbody>
 </table>
 
-
-
+<h1>YOU HAVE NO FISH BECAUSE YOU KILLED THEM ALL</h1>
 <a class="btn btn-primary" href="http://localhost:53298/home/fishadd">Add Fish &raquo;</a>
 <button type="submit" class="btn btn-primary btn-block" ng-click="ac.Fish(delete)">Add Shark</button>

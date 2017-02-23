@@ -6,18 +6,43 @@
 
 
     <h1 class="col-sm-offset-3" style="text-shadow:5px 5px 5px">Welcome To The Aquarium!</h1>
-    <div class="row" ng-controller="AccountController as ac" g-cloak>
-         <div class="col-sm-3 col-sm-offset-7">
-            <h3 style="font-weight: bolder">Login:</h3>
-            <div class="panel-body" ng-init="user = {}">
-                <div class="form-group text-right">
-                    <input type="text" class="form-control" placeholder="Email" ng-model="user.email" />
+        <div class="row" ng-controller="AccountController as ac" g-cloak>
+             <div class="col-sm-3 col-sm-offset-7">
+                <h3 style="font-weight: bolder">Login:</h3>
+                <div class="panel-body" ng-init="user = {}">
+                    <div class="form-group text-right">
+                        <input type="text" class="form-control" placeholder="Email" ng-model="user.email" />
+                    </div>
+                    <div class="form-group text-right">
+                        <input type="password" class="form-control" placeholder="Password" ng-model="user.password" />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block" ng-click="ac.Login(user)">Login</button>
                 </div>
-                <div class="form-group text-right">
-                    <input type="password" class="form-control" placeholder="Password" ng-model="user.password" />
-                </div>
-                <button type="submit" class="btn btn-primary btn-block" ng-click="ac.Login(user)">Login</button>
             </div>
         </div>
-    </div>
-    </body>
+
+</body>
+
+    @*<div class="container">*@
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-7">
+                <div class="pr-wrap">
+                   
+                </div>
+                <div class="wrap">
+                    <p class="form-title">
+                        Sign In
+                    </p>
+                    <form class="login">
+                        <input type="text" placeholder="Username" class="form-underlined" />
+                        <input type="password" placeholder="Password" class="form-underlined" />
+                        <input type="submit" value="Sign In" class="btn btn-success btn-sm" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    @*</div>*@
+
+
+    
