@@ -3,53 +3,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Aquarium.Data;
-using Aquarium.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Aquarium.Data;
+using Microsoft.AspNetCore.Authorization;
+using Angular.Web.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
-using Angular.Web.Models;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Aquarium.Controllers
+namespace Angular.Web.Controllers.Controllers.API
 {
     [Produces("application/json")]
-    [Route("api/fishes")]
+    [Route("api/tank")]
     [Authorize]
-    public class FishesController : Controller
+    public class TankController : Controller
     {
         private readonly AquariumContext _context;
         private UserManager<ApplicationUser> _userManager { get; set; }
-       private Tank _tank { get; set; }             //new try
-        
 
-        public FishesController(UserManager<ApplicationUser> userManager, AquariumContext context)
+        public TankController(UserManager<ApplicationUser> userManager, AquariumContext context)
         {
             _userManager = userManager;
             _context = context;
-            _tank = new Tank();
         }
 
-        [Route("~/fishes")]
+        [Route("~/tank")]
         public IActionResult Owner()
         {
             return View();
         }
 
         [HttpGet]
-        public IEnumerable<Fish> GetFish()
+        public IEnumerable<Tank> GetTank()
         {
             var userId = _userManager.GetUserId(User);
-            var tankId = _tank.OwnerId;
-            return _context.Fishes.Where(q => q.OwnerId == userId).ToList();
+            return _context.Tanks.Where(q => q.OwnerId == userId).ToList();
         }
 
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetFish([FromRoute] int id)
+        public async Task<IActionResult> GetTank([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -57,34 +52,33 @@ namespace Aquarium.Controllers
             }
 
             var userId = _userManager.GetUserId(User);
-            Fish fish = await _context.Fishes
+            Tank tank = await _context.Tanks
                 .SingleOrDefaultAsync(p => p.OwnerId == userId && p.Id == id);
 
-            if (fish == null)
+            if (tank == null)
             {
                 return NotFound();
             }
 
-            return Ok(fish);
+            return Ok(tank);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFish([FromRoute] int id, [FromBody] Fish fish)
+        public async Task<IActionResult> PutTank([FromRoute] int id, [FromBody] Tank tank)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != fish.Id)
+            if (id != tank.Id)
             {
                 return BadRequest();
             }
 
-            
-            fish.Owner = await _userManager.GetUserAsync(User);
-            _context.Entry(fish).State = EntityState.Modified;
+            tank.Owner = await _userManager.GetUserAsync(User);
+            _context.Entry(tank).State = EntityState.Modified;
 
             try
             {
@@ -92,7 +86,7 @@ namespace Aquarium.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!FishExists(id))
+                if (!TankExists(id))
                 {
                     return NotFound();
                 }
@@ -108,27 +102,22 @@ namespace Aquarium.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> PostFish([FromBody] Fish fish)
+        public async Task<IActionResult> PostTank([FromBody] Tank tank)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            fish.Owner = await _userManager.GetUserAsync(User);
-            fish.Tank = _tank.Name;
-           
-            _context.Fishes.Add(fish);
-           // _tank.Fishes.Add(fish);
-           
-            
+            tank.Owner = await _userManager.GetUserAsync(User);
+            _context.Tanks.Add(tank);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if(FishExists(fish.Id))
+                if (TankExists(tank.Id))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -138,33 +127,33 @@ namespace Aquarium.Controllers
                 }
             }
 
-            return CreatedAtAction("GetFish", new { id = fish.Id }, fish);
+            return CreatedAtAction("GetTank", new { id = tank.Id }, tank);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFish([FromRoute] int id)
+        public async Task<IActionResult> DeleteTank([FromRoute] int id)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
             var userId = _userManager.GetUserId(User);
 
-            Fish fish = await _context.Fishes
+            Tank tank = await _context.Tanks
                 .Where(q => q.OwnerId == userId)
                 .SingleOrDefaultAsync(m => m.Id == id);
 
-            if(fish == null)
+            if (tank == null)
             {
                 return NotFound();
             }
 
-            _context.Fishes.Remove(fish);
+            _context.Tanks.Remove(tank);
             await _context.SaveChangesAsync();
 
-            return Ok(fish);
+            return Ok(tank);
         }
 
         //[HttpDelete]
@@ -182,10 +171,10 @@ namespace Aquarium.Controllers
         //        .ForEachAsync(n => n.Id == id);
         //}
 
-        private bool FishExists(int id)
+        private bool TankExists(int id)
         {
             var userId = _userManager.GetUserId(User);
-            return _context.Fishes.Any(e => e.OwnerId == userId && e.Id == id);
+            return _context.Tanks.Any(e => e.OwnerId == userId && e.Id == id);
         }
 
 

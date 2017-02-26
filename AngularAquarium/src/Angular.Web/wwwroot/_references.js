@@ -3,6 +3,7 @@
 /// <reference path="js/controllers/accountcontroller.js" />
 /// <reference path="js/controllers/AquariumController.js" />
 /// <reference path="js/controllers/inventorycontroller.js" />
+/// <reference path="js/controllers/tank.js" />
 /// <reference path="js/site.js" />
 /// <reference path="lib/bootstrap/dist/js/bootstrap.js" />
 /// <reference path="lib/jquery/dist/jquery.js" />

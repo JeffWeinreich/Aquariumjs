@@ -1,4 +1,5 @@
-﻿using Aquarium.Models;
+﻿using Angular.Web.Models;
+using Aquarium.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,6 +12,8 @@ namespace Aquarium.Data
     public class AquariumContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Fish> Fishes { get; set; }
+
+        public DbSet<Tank> Tanks { get; set; }
 
         public AquariumContext() : base()
         {

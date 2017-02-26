@@ -1,0 +1,30 @@
+﻿
+@section scripts {
+    <script src="~/js/controllers/aquariumcontroller.js" type="text/javascript"></script>
+}
+
+
+@{ViewData["Title"] = "Fish";
+}
+
+<body style="background-image:url(https://s-media-cache-ak0.pinimg.com/originals/01/cf/31/01cf31bf81119e148261f458b1a33a49.jpg)" class="background-two">
+
+    <table class="table" ng-controller="AquariumController as aqc">
+        <tbody>
+
+            <tr ng-repeat="fish in aqc.Fishes">
+                <td>Name: {{fish.name}}</td>
+                <td>{{fish.type}}</td>
+                <td>{{fish.description}}</td>
+
+
+                <td>
+                    <button class="btn btn-danger" ng-click="aqc.Remove(fish)">Remove</button>
+                </td>
+            </tr>
+            <tr ng-init="fish = {}"></tr>
+        </tbody>
+    </table>
+</body>
+
+<a class="btn btn-primary" href="http://localhost:53298/home/user/tanks/tank/fishadd">Add A Fish</a>

@@ -20,10 +20,38 @@
     padding: 5px 10px;
     background: none;
     border: 0;
-    border-bottom: solid 1px #FFF;
+    border-bottom: solid 1px #000;
+    
     
 }
 
-.background-smaller {
-
+.background-one {
+    background-repeat:no-repeat;
+    background-size: cover;
 }
+
+.background-two {
+    background-repeat: no-repeat;  
+    background-size: cover;
+    background-position: center;
+}
+
+#background {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    background: url(polina.jpg) no-repeat;
+    background-size: cover;
+}
+
+/*.container h1 {
+    color: white;
+}*/
+

@@ -1,0 +1,30 @@
+﻿
+@section scripts {
+    <script src="~/js/controllers/tankcontroller.js" type="text/javascript"></script>
+}
+
+
+@{ViewData["Title"] = "Tanks";
+}
+
+<body style="background-image:url(https://s-media-cache-ak0.pinimg.com/originals/01/cf/31/01cf31bf81119e148261f458b1a33a49.jpg)" class="background-two">
+
+    <table class="table" ng-controller="TankController as tc">
+        <tbody>
+            <tr ng-repeat="tank in tc.Tanks">
+                <td>Name: {{tank.name}}</td>
+                <td>
+                    <p><a class="btn btn-primary" href="http://localhost:53298/home/user/tanks/{{tank.id}}">Explore Tank &raquo;</a></p>
+                </td>
+               
+                <td>
+                    <button class="btn btn-danger" ng-click="tc.Remove(tank)">Remove</button>
+                </td>
+            </tr>
+            <tr ng-init="tank = {}"></tr>
+        </tbody>
+    </table>
+</body>
+
+<a class="btn btn-primary" href="http://localhost:53298/home/user/tankadd">Add A Tank &raquo;</a>
+

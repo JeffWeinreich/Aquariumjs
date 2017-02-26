@@ -8,7 +8,7 @@
     function AquariumController($http) {
         var vm = this;          //vm stands for view model, standard practice
 
-        vm.Aquarium = [];
+        vm.Fishes = [];
 
         activate();
 
@@ -47,10 +47,14 @@
 
         };
 
-        //vm.Clear = function (fish) {
-        //    var url = '/api/fishes/{id}'.relace('{id}', fish.id);
-        //    var promise = $
-        //}
+        vm.Clear = function (fish) {
+           // var url = '/api/fishes/{id}'.replace('{id}', fish.id);
+            var promise = $http.clear('/api/fishes');
+            promise.then(function (result) {
+                var index = vm.Fishes.indexOf(fish);
+                vm.Fishes.splice(index, 1);
+            });
+        };
     }
 
 })();

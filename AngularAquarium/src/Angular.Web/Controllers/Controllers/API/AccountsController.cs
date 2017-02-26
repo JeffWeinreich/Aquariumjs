@@ -42,14 +42,6 @@ namespace Aquarium.Controllers
             if (user != null)
             {
                 var result = await SignInManager.PasswordSignInAsync(user, model.Password, false, true);
-               // if (result.Succeeded)
-               // {
-               //     return Ok();
-               // }
-               // else
-               // {
-               //     return BadRequest();
-               // }
                 return Ok();
 
             }

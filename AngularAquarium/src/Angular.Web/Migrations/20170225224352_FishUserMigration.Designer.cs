@@ -8,9 +8,10 @@ using Aquarium.Data;
 namespace Angular.Web.Migrations
 {
     [DbContext(typeof(AquariumContext))]
-    partial class AquariumContextModelSnapshot : ModelSnapshot
+    [Migration("20170225224352_FishUserMigration")]
+    partial class FishUserMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -23,11 +24,9 @@ namespace Angular.Web.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<string>("OwnerId");
+                    b.Property<string>("Owner");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OwnerId");
 
                     b.ToTable("Tanks");
                 });
@@ -90,6 +89,8 @@ namespace Angular.Web.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
+
+                    b.Property<string>("Image");
 
                     b.Property<string>("Name");
 
@@ -214,13 +215,6 @@ namespace Angular.Web.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("UserTokens");
-                });
-
-            modelBuilder.Entity("Angular.Web.Models.Tank", b =>
-                {
-                    b.HasOne("Aquarium.Data.ApplicationUser", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId");
                 });
 
             modelBuilder.Entity("Aquarium.Models.Fish", b =>
