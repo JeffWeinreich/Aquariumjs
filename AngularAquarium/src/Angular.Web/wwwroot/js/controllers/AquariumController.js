@@ -39,7 +39,7 @@
             
 
 
-            var promise = $http.post('/api/tanks/' + vm.tank + '/fishes', copy);              //used  to be just '/api/fishes'
+            var promise = $http.post('/api/tanks/' + vm.tank + '/fishes', copy);   
             promise.then(function (result) {
                 //success
                 vm.Fishes.push(result.data);

@@ -10,7 +10,6 @@ using Angular.Web.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Angular.Web.Controllers.Controllers.API
 {
@@ -41,8 +40,6 @@ namespace Angular.Web.Controllers.Controllers.API
             return _context.Tanks.Where(q => q.OwnerId == userId).ToList();
         }
 
-
-        // GET api/values/5
         [HttpGet("~/api/tanks/{id}")]
         public async Task<IActionResult> GetTank([FromRoute] int id)
         {
@@ -63,7 +60,6 @@ namespace Angular.Web.Controllers.Controllers.API
             return Ok(tank);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTank([FromRoute] int id, [FromBody] Tank tank)
         {
@@ -100,7 +96,6 @@ namespace Angular.Web.Controllers.Controllers.API
 
         }
 
-        // POST api/values
         [HttpPost("~/api/tanks")]
         public async Task<IActionResult> PostTank([FromBody] Tank tank)
         {
@@ -114,11 +109,9 @@ namespace Angular.Web.Controllers.Controllers.API
 
             await _context.SaveChangesAsync();
 
-            //return Ok();
             return CreatedAtAction("GetTank", new { id = tank.Id }, tank);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTank([FromRoute] int id)
         {
@@ -144,20 +137,6 @@ namespace Angular.Web.Controllers.Controllers.API
             return Ok(tank);
         }
 
-        //[HttpDelete]
-        //public async Task<IActionResult> ClearFish([FromRoute] int id)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var userId = _userManager.GetUserId(User);
-
-        //    Fish fish = _context.Fishes
-        //        .Where(x => x.Owner == userId)
-        //        .ForEachAsync(n => n.Id == id);
-        //}
 
         private bool TankExists(int id)
         {

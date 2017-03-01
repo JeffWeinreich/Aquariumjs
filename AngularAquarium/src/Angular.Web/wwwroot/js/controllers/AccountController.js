@@ -8,7 +8,7 @@
     AccountController.$inject = ['$http', '$window'];
 
     function AccountController($http, $window) {
-        var vm = this;          //vm stands for view model, standard practice
+        var vm = this;          
 
         vm.Register = function (model) {
             var promise = $http.post('/api/accounts/register', model);

@@ -11,7 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using Angular.Web.Models;
 
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Aquarium.Controllers
 {
@@ -21,15 +20,12 @@ namespace Aquarium.Controllers
     public class FishesController : Controller
     {
         private readonly AquariumContext _context;
-        private UserManager<ApplicationUser> _userManager { get; set; }
-       //private Tank _tank { get; set; }             //new try
-        
+        private UserManager<ApplicationUser> _userManager { get; set; }  
 
         public FishesController(UserManager<ApplicationUser> userManager, AquariumContext context)
         {
             _userManager = userManager;
             _context = context;
-           // _tank = tank;
         }
 
         [Route("~/fishes")]
@@ -42,12 +38,9 @@ namespace Aquarium.Controllers
         public IEnumerable<Fish> GetFish()
         {
             var userId = _userManager.GetUserId(User);
-            //var tankId = _tank.OwnerId;
             return _context.Fishes.Where(q => q.OwnerId == userId).ToList();
         }
 
-
-        // GET api/values/5
         [HttpGet("~/api/tanks/{id}/fishes")]
         public async Task<IActionResult> GetFish([FromRoute] int id)
         {
@@ -68,7 +61,6 @@ namespace Aquarium.Controllers
             return Ok(fish);
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFish([FromRoute] int id, [FromBody] Fish fish)
         {
@@ -141,7 +133,6 @@ namespace Aquarium.Controllers
             return CreatedAtAction("GetFish", new { id = fish.Id }, fish);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteFish([FromRoute] int id)
         {

@@ -7,26 +7,86 @@
 @{ViewData["Title"] = "Tanks";
 }
 
-<body style="background-image:url(https://s-media-cache-ak0.pinimg.com/originals/01/cf/31/01cf31bf81119e148261f458b1a33a49.jpg)" class="background-two">
+@*<body style="background-image:url(https://s-media-cache-ak0.pinimg.com/originals/01/cf/31/01cf31bf81119e148261f458b1a33a49.jpg)" class="background-two">*@
+    <body style="background-image:url(http://www.chillcover.com/wp-content/uploads/2015/03/Clear-Ocean-Water_Desktop_Background_chillcover.com_.jpg)" class="background-two">
 
-    <table class="table" ng-controller="TankController as tc">
-        <tbody>
-            <tr ng-repeat="tank in tc.Tanks">
-                <td style="font-weight:bolder; font-size:x-large; color:black">Tank:</td>
-                <td style="font-weight:bolder; font-size:large; color:black">{{tank.name}}</td>
-                <td>
-                    <p><a class="btn btn-link" style="font-weight:bolder;
-                            font-size:large; color:black" href="http://localhost:53298/home/user/tanks/{{tank.id}}">Explore Tank &raquo;</a></p>
-                </td>
-               
-                <td>
-                    <button class="btn btn-danger" ng-click="tc.Remove(tank)">Remove</button>
-                </td>
-            </tr>
-            <tr ng-init="tank = {}"></tr>
-        </tbody>
-    </table>
-</body>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-3 col-sm-6">
+                    <div id="myCarousel" class="carousel slide" style="max-width: 500px">
+                        <ol class="carousel-indicators">
+                            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                            <li data-target="#myCarousel" data-slide-to="1"></li>
+                            <li data-target="#myCarousel" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img src="http://upload.wikimedia.org/wikipedia/commons/7/7f/Fish_tank_(2).jpg" class="img-responsive">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                        <h1>Title</h1>
+                                        <p>Description</p>
+                                        <p><a class="btn btn-lg btn-primary" href="#">Add Fish</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3p7o6Gdu2Be2wGjGJwDe1Ky5xX1O-urfpunb0F_iBpAUVE4g5" class="img-responsive">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                        <h1>Title</h1>
+                                        <p>Description</p>
+                                        <p><a class="btn btn-large btn-primary" href="#">Add Fish</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img src="http://i.imgur.com/pkpcomT.jpg" class="img-responsive">
+                                <div class="container">
+                                    <div class="carousel-caption">
+                                        <h1>Title</h1>
+                                        <p>Description</p>
+                                        <p><a class="btn btn-large btn-primary" href="#">Add Tank</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                            <span class="icon-prev"></span>
+                        </a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                            <span class="icon-next"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <table class="table" ng-controller="TankController as tc">
+            <tbody>
+                <tr ng-repeat="tank in tc.Tanks">
+                    <td style="font-weight:bolder; font-size:x-large; color:black">Tank:</td>
+                    <td style="font-weight:bolder; font-size:large; color:black">{{tank.name}}</td>
+                    <td>
+                        <p>
+                            <a class="btn btn-link" style="font-weight:bolder;
+                            font-size:large; color:black" href="http://localhost:53298/home/user/tanks/{{tank.id}}">Explore Tank &raquo;</a>
+                        </p>
+                    </td>
+
+                    <td>
+                        <button class="btn btn-danger" ng-click="tc.Remove(tank)">Remove</button>
+                    </td>
+                </tr>
+                <tr ng-init="tank = {}"></tr>
+            </tbody>
+        </table>
+    </body>
 
 <a class="btn btn-primary" href="http://localhost:53298/home/user/tankadd">Add A Tank &raquo;</a>
 
