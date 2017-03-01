@@ -1,0 +1,20 @@
+TankController
+
+31 Owner should either be renamed to Tanks or Index. 
+37 GetTank -> GetTanks 
+44 FromRoute automatically happens when you add {id} to the route.  
+63 Use a full route here ~/api/tanks/{id}
+76 Good call on resetting the owner.
+
+
+FishController
+
+18 Remove Route and use explicit routing.  
+31 ~/tanks/{tankId}/fishes
+31 Rename  Owner method to Index or Fishes
+37 Explicit routes
+54 no reason for async call really.  i think this was boiler plate code though.  
+136 api/tanks/{tankId}/fishes/{id}
+
+HomeController
+Whole bunch of stuff.  
