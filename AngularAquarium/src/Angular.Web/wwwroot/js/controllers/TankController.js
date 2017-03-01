@@ -24,7 +24,7 @@
             tank.name = '';
 
 
-            var promise = $http.post('/api/tank', copy);
+            var promise = $http.post('/api/tanks' , copy);
             promise.then(function (result) {
                 //success
                 vm.Tanks.push(result.data);

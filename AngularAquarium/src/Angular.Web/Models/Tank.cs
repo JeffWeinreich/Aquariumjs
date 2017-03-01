@@ -13,7 +13,6 @@ namespace Angular.Web.Models
         public string Name { get; set; }
         public string OwnerId { get; set; }
         public ApplicationUser Owner { get; set; }
-        //public int FishCount { get; set; }
         public virtual List<Fish> Fishes { get; set; }
 
         public Tank()

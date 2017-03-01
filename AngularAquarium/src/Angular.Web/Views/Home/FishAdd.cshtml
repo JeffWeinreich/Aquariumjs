@@ -21,20 +21,14 @@
 </html>
 
 
-<div class="row" ng-controller="AquariumController as aqc" ng-cloak>
+<div class="row" ng-controller="AquariumController as aqc" ng-init="aqc.tank = '@Model'" ng-cloak>
     
     <div class="col-sm-6 col-sm-offset-3">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Fish</h3>
             </div>
             <ol class="list-group">
-
-                <li class="list-group-item clearfix">
-                    <div class="col-sm-8">
-                    </div>
-                </li>
-
                 <li class="list-group-item clearfix" @*ng-init="fish = {}"*@>
                     <div class="col-sm-8">
                         <div>

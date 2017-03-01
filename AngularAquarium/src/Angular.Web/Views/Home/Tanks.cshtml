@@ -12,9 +12,11 @@
     <table class="table" ng-controller="TankController as tc">
         <tbody>
             <tr ng-repeat="tank in tc.Tanks">
-                <td>Name: {{tank.name}}</td>
+                <td style="font-weight:bolder; font-size:x-large; color:black">Tank:</td>
+                <td style="font-weight:bolder; font-size:large; color:black">{{tank.name}}</td>
                 <td>
-                    <p><a class="btn btn-primary" href="http://localhost:53298/home/user/tanks/{{tank.id}}">Explore Tank &raquo;</a></p>
+                    <p><a class="btn btn-link" style="font-weight:bolder;
+                            font-size:large; color:black" href="http://localhost:53298/home/user/tanks/{{tank.id}}">Explore Tank &raquo;</a></p>
                 </td>
                
                 <td>

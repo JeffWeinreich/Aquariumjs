@@ -9,11 +9,22 @@
         var vm = this;          //vm stands for view model, standard practice
 
         vm.Fishes = [];
+        vm.tank = '';
 
-        activate();
 
-        function activate() {
-            var promise = $http.get('/api/fishes');
+        vm.GetInfo = function (tankId) {
+            var promise = $http.get('/api/tanks/' + tankId);
+            promise.then(function (result) {
+                console.log(result);
+                vm.tank = (result.data);
+                vm.GetFishes();
+            }, function (result) {
+                console.log(result);
+            });
+        }
+
+        vm.GetFishes = function() {
+            var promise = $http.get('/api/tanks/' + vm.tank.id + '/fishes');
             promise.then(function (result) {
                 vm.Fishes= result.data;
             });
@@ -25,9 +36,10 @@
             fish.type = '';
             fish.quantity = '';
             fish.description = '';
+            
 
 
-            var promise = $http.post('/api/fishes', copy);
+            var promise = $http.post('/api/tanks/' + vm.tank + '/fishes', copy);              //used  to be just '/api/fishes'
             promise.then(function (result) {
                 //success
                 vm.Fishes.push(result.data);

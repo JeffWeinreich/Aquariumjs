@@ -43,7 +43,7 @@ namespace Angular.Web.Controllers.Controllers.API
 
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("~/api/tanks/{id}")]
         public async Task<IActionResult> GetTank([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -101,7 +101,7 @@ namespace Angular.Web.Controllers.Controllers.API
         }
 
         // POST api/values
-        [HttpPost]
+        [HttpPost("~/api/tanks")]
         public async Task<IActionResult> PostTank([FromBody] Tank tank)
         {
             if (!ModelState.IsValid)
@@ -111,22 +111,10 @@ namespace Angular.Web.Controllers.Controllers.API
 
             tank.Owner = await _userManager.GetUserAsync(User);
             _context.Tanks.Add(tank);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (TankExists(tank.Id))
-                {
-                    return new StatusCodeResult(StatusCodes.Status409Conflict);
-                }
-                else
-                {
-                    throw;
-                }
-            }
 
+            await _context.SaveChangesAsync();
+
+            //return Ok();
             return CreatedAtAction("GetTank", new { id = tank.Id }, tank);
         }
 

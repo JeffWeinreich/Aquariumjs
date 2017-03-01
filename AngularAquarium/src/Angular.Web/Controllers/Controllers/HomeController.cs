@@ -23,10 +23,10 @@ namespace Angular.Web.Controllers     //Aquarium.Controllers
             return View();
         }
 
-        [Route("~/home/user/tanks/tank/fishadd")]
-        public IActionResult FishAdd()
+        [Route("~/home/user/tanks/{id}/fishadd")]
+        public IActionResult FishAdd(int id)
         {
-            return View();
+            return View(model: id);
         }
 
         public IActionResult User()
@@ -57,9 +57,7 @@ namespace Angular.Web.Controllers     //Aquarium.Controllers
         [Route("~/home/user/tanks/{id}")]
         public IActionResult Tank(int id)
         {
-            var tank = Context.Tanks.Find(id);
-
-            return View(tank);
+            return View(model: id);
         }
 
 

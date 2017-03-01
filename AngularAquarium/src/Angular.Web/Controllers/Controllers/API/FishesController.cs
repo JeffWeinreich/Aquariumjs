@@ -22,14 +22,14 @@ namespace Aquarium.Controllers
     {
         private readonly AquariumContext _context;
         private UserManager<ApplicationUser> _userManager { get; set; }
-       private Tank _tank { get; set; }             //new try
+       //private Tank _tank { get; set; }             //new try
         
 
         public FishesController(UserManager<ApplicationUser> userManager, AquariumContext context)
         {
             _userManager = userManager;
             _context = context;
-            _tank = new Tank();
+           // _tank = tank;
         }
 
         [Route("~/fishes")]
@@ -42,13 +42,13 @@ namespace Aquarium.Controllers
         public IEnumerable<Fish> GetFish()
         {
             var userId = _userManager.GetUserId(User);
-            var tankId = _tank.OwnerId;
+            //var tankId = _tank.OwnerId;
             return _context.Fishes.Where(q => q.OwnerId == userId).ToList();
         }
 
 
         // GET api/values/5
-        [HttpGet("{id}")]
+        [HttpGet("~/api/tanks/{id}/fishes")]
         public async Task<IActionResult> GetFish([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -57,8 +57,8 @@ namespace Aquarium.Controllers
             }
 
             var userId = _userManager.GetUserId(User);
-            Fish fish = await _context.Fishes
-                .SingleOrDefaultAsync(p => p.OwnerId == userId && p.Id == id);
+            var fish = await _context.Fishes
+                .Where(p => p.TankId == id).ToListAsync();
 
             if (fish == null)
             {
@@ -106,22 +106,22 @@ namespace Aquarium.Controllers
 
         }
 
-        // POST api/values
-        [HttpPost]
-        public async Task<IActionResult> PostFish([FromBody] Fish fish)
+     
+        [HttpPost("~/api/tanks/{tankId}/fishes")]
+        public async Task<IActionResult> PostFish(int tankId, [FromBody] Fish fish)
         {
+            var tank = _context.Tanks.FirstOrDefault(q => q.Id == tankId);
+
             if(!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
             fish.Owner = await _userManager.GetUserAsync(User);
-            fish.Tank = _tank.Name;
-           
+            fish.Tank = tank;
+                      
             _context.Fishes.Add(fish);
-           // _tank.Fishes.Add(fish);
-           
-            
+                        
             try
             {
                 await _context.SaveChangesAsync();

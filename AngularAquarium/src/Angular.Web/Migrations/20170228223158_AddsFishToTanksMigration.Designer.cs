@@ -8,9 +8,10 @@ using Aquarium.Data;
 namespace Angular.Web.Migrations
 {
     [DbContext(typeof(AquariumContext))]
-    partial class AquariumContextModelSnapshot : ModelSnapshot
+    [Migration("20170228223158_AddsFishToTanksMigration")]
+    partial class AddsFishToTanksMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
