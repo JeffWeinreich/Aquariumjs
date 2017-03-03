@@ -21,14 +21,21 @@
     background: none;
     border: 0;
     border-bottom: solid 1px #000;
-    
-    
+    outline: 0;    
 }
 
-.background-one {
+.turtle-background {
+    background-image:url(https://s-media-cache-ak0.pinimg.com/originals/50/10/3e/50103e3bed5d50042f5b82a600c06d0f.jpg);
+    background-position: center 0;
+}
+
+.stingray-background {
+    background-image:url(http://www.caymanlandandsea.com/photogallery/Stingray%2520Underwater.png);
     background-repeat:no-repeat;
     background-size: cover;
+   /*-webkit-filter: saturate(3)*/
 }
+
 
 .background-two {
     background-repeat: no-repeat;  
@@ -57,7 +64,32 @@
  color: #5a5a5a ;
 }
 
+.form-underlined::-webkit-input-placeholder {
+  color: #1e1e1e;
+  
+  
+}
 
+.watery-font {
+    font-family: 'Fontdiner Swanky', cursive;
+    
+}
+
+.lg-text {
+      font-size:7em; 
+}
+
+.md-text {
+    font-size:3em;
+}
+
+.text-water {
+    color: #61A5FF;
+}
+
+.sm-shadow {
+    text-shadow:1px 1px 5px;
+}
 .navbar-wrapper {
  position: absolute;
  top: 0;

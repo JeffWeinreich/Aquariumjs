@@ -34,14 +34,14 @@ namespace Angular.Web.Controllers.Controllers.API
         }
 
         [HttpGet]
-        public IEnumerable<Tank> GetTank()
+        public IEnumerable<Tank> GetTank()              //tanks
         {
             var userId = _userManager.GetUserId(User);
             return _context.Tanks.Where(q => q.OwnerId == userId).ToList();
         }
 
         [HttpGet("~/api/tanks/{id}")]
-        public async Task<IActionResult> GetTank([FromRoute] int id)
+        public async Task<IActionResult> GetTank([FromRoute] int id)            
         {
             if (!ModelState.IsValid)
             {

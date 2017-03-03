@@ -1,30 +1,29 @@
 ﻿@section scripts {
-<script src="~/js/controllers/accountcontroller.js" type="text/javascript"></script>
+    <script src="~/js/controllers/accountcontroller.js" type="text/javascript"></script>
 }
 
-<body style="background-image:url(http://www.caymanlandandsea.com/photogallery/Stingray%2520Underwater.png)" class="background-one">
-
-
-    <h1 class="col-sm-offset-3" style="text-shadow:1px 1px 5px; color: black">Welcome Back To The Aquarium!</h1>
-        <div class="row" ng-controller="AccountController as ac" g-cloak>
-             <div class="col-sm-3 col-sm-offset-7">
-                 <div class="pr-wrap">
-                </div>
-                 <div class="wrap">
-                     <h4 class="form-title" style="font-weight:bold">
-                         Login
-                     </h4>
-                     <div class="panel-body" ng-init="user = {}">
-                         <form class="login">
-                             <input type="text" style="color:black" placeholder="Email" class="form-underlined" ng-model="user.email" />
-                             <input type="password" style="color:black" placeholder="Password" class="form-underlined" ng-model="user.password" />
-                             <input type="submit" value="Login" class="btn btn-primary btn-sm" ng-click="ac.Login(user)" />
-                         </form>
-                     </div>
-                 </div>
+<body class="stingray-background">
+    <h1 class="text-center watery-font md-text" color: black">Welcome Back To The Aquarium</h1>
+    <div class="row" ng-controller="AccountController as ac" g-cloak>
+        <div class="col-sm-3 col-sm-offset-7">
+            <div class="panel-body" ng-init="user = {}">
+                <h4 class="form-title" style="font-weight:bold">
+                    Login
+                </h4>
+                <form class="login">
+                    <div class="form-group">
+                        <input type="text" style="color:black" placeholder="Email" class="form-underlined" ng-model="user.email" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" style="color:black" placeholder="Password" class="form-underlined" ng-model="user.password" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Login" class="btn btn-primary btn-sm pull-right" ng-click="ac.Login(user)" />
+                    </div>
+                </form>
             </div>
-        </div>     
-
+        </div>
+    </div>
 </body>
 
-    
+
