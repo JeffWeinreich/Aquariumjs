@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Http;
 namespace Angular.Web.Controllers.Controllers.API
 {
     [Produces("application/json")]
-    [Route("api/tank")]
     [Authorize]
     public class TanksController : Controller
     {
@@ -27,21 +26,21 @@ namespace Angular.Web.Controllers.Controllers.API
             _context = context;
         }
 
-        [Route("~/tank")]
-        public IActionResult Owner()
+        [Route("~/tanks")]
+        public IActionResult Index()
         {
             return View();
         }
 
-        [HttpGet]
-        public IEnumerable<Tank> GetTank()              //tanks
+        [HttpGet("~/api/tanks")]
+        public IEnumerable<Tank> GetTanks()              
         {
             var userId = _userManager.GetUserId(User);
             return _context.Tanks.Where(q => q.OwnerId == userId).ToList();
         }
 
         [HttpGet("~/api/tanks/{id}")]
-        public async Task<IActionResult> GetTank([FromRoute] int id)            
+        public async Task<IActionResult> GetTank(int id)            
         {
             if (!ModelState.IsValid)
             {
@@ -60,8 +59,8 @@ namespace Angular.Web.Controllers.Controllers.API
             return Ok(tank);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutTank([FromRoute] int id, [FromBody] Tank tank)
+        [HttpPut("~/api/tanks/{id}")]
+        public async Task<IActionResult> PutTank(int id, [FromBody] Tank tank)
         {
             if (!ModelState.IsValid)
             {
@@ -112,8 +111,8 @@ namespace Angular.Web.Controllers.Controllers.API
             return CreatedAtAction("GetTank", new { id = tank.Id }, tank);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTank([FromRoute] int id)
+        [HttpDelete("~/api/tanks/{id}")]
+        public async Task<IActionResult> DeleteTank(int id)
         {
             if (!ModelState.IsValid)
             {

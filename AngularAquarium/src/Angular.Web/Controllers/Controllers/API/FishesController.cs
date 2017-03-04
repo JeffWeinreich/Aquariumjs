@@ -15,7 +15,6 @@ using Angular.Web.Models;
 namespace Aquarium.Controllers
 {
     [Produces("application/json")]
-    [Route("api/fishes")]
     [Authorize]
     public class FishesController : Controller
     {
@@ -29,12 +28,12 @@ namespace Aquarium.Controllers
         }
 
         [Route("~/tanks/{tankId}/fishes")]
-        public IActionResult Owner()
+        public IActionResult Index()
         {
             return View();
         }
 
-        [HttpGet]
+        [HttpGet("~/api/fishes")]
         public IEnumerable<Fish> GetFish()
         {
             var userId = _userManager.GetUserId(User);
@@ -61,7 +60,7 @@ namespace Aquarium.Controllers
             return Ok(fish);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("~/api/fishes/{id}")]
         public async Task<IActionResult> PutFish([FromRoute] int id, [FromBody] Fish fish)
         {
             if (!ModelState.IsValid)
@@ -74,7 +73,7 @@ namespace Aquarium.Controllers
                 return BadRequest();
             }
 
-            
+
             fish.Owner = await _userManager.GetUserAsync(User);
             _context.Entry(fish).State = EntityState.Modified;
 
@@ -98,29 +97,29 @@ namespace Aquarium.Controllers
 
         }
 
-     
+
         [HttpPost("~/api/tanks/{tankId}/fishes")]
         public async Task<IActionResult> PostFish(int tankId, [FromBody] Fish fish)
         {
             var tank = _context.Tanks.FirstOrDefault(q => q.Id == tankId);
 
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
             fish.Owner = await _userManager.GetUserAsync(User);
             fish.Tank = tank;
-                      
+
             _context.Fishes.Add(fish);
-                        
+
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if(FishExists(fish.Id))
+                if (FishExists(fish.Id))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -133,7 +132,7 @@ namespace Aquarium.Controllers
             return CreatedAtAction("GetFish", new { id = fish.Id }, fish);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("~/api/fishes/{id}")]
         public async Task<IActionResult> DeleteFish([FromRoute] int id)
         {
             if(!ModelState.IsValid)

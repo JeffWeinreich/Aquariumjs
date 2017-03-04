@@ -13,7 +13,7 @@
         activate();
 
         function activate() {
-            var promise = $http.get('/api/tank');
+            var promise = $http.get('/api/tanks');
             promise.then(function (result) {
                 vm.Tanks = result.data;
             });
@@ -35,7 +35,7 @@
         };
 
         vm.Remove = function (tank) {
-            var url = '/api/tank/{id}'.replace('{id}', tank.id);
+            var url = '/api/tanks/{id}'.replace('{id}', tank.id);
             var promise = $http.delete(url);
             promise.then(function (result) {
                 var index = vm.Tanks.indexOf(tank);
@@ -46,7 +46,7 @@
 
         vm.Clear = function (tank) {
            
-            var promise = $http.clear('/api/tank');
+            var promise = $http.clear('/api/tanks');
             promise.then(function (result) {
                 var index = vm.Tanks.indexOf(fish);
                 vm.Tanks.splice(index, 1);
