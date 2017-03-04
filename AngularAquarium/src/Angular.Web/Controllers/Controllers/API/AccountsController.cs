@@ -12,7 +12,7 @@ using Aquarium.Models;
 namespace Aquarium.Controllers
 {
     [Produces("application/json")]
-    [Route("api/accounts")]
+    //[Route("api/accounts")]
     public class AccountsController : Controller
     {
         public SignInManager<ApplicationUser> SignInManager { get; set; }

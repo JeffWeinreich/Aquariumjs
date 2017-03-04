@@ -16,12 +16,12 @@ namespace Angular.Web.Controllers.Controllers.API
     [Produces("application/json")]
     [Route("api/tank")]
     [Authorize]
-    public class TankController : Controller
+    public class TanksController : Controller
     {
         private readonly AquariumContext _context;
         private UserManager<ApplicationUser> _userManager { get; set; }
 
-        public TankController(UserManager<ApplicationUser> userManager, AquariumContext context)
+        public TanksController(UserManager<ApplicationUser> userManager, AquariumContext context)
         {
             _userManager = userManager;
             _context = context;

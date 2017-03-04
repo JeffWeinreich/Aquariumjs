@@ -20,7 +20,7 @@ namespace Aquarium.Controllers
     public class FishesController : Controller
     {
         private readonly AquariumContext _context;
-        private UserManager<ApplicationUser> _userManager { get; set; }  
+        private UserManager<ApplicationUser> _userManager { get; set; }
 
         public FishesController(UserManager<ApplicationUser> userManager, AquariumContext context)
         {
@@ -28,7 +28,7 @@ namespace Aquarium.Controllers
             _context = context;
         }
 
-        [Route("~/fishes")]
+        [Route("~/tanks/{tankId}/fishes")]
         public IActionResult Owner()
         {
             return View();
