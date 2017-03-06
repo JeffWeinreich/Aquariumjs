@@ -32,6 +32,28 @@ namespace Angular.Web.Controllers.Controllers.API
             return View();
         }
 
+        [Route("~/tanks/{id}")]
+        public IActionResult Tank(int id)
+        {
+            // var tank = Context.Tanks.Find(id);
+            return View(model: id);
+        }
+
+        [Route("~/tanks/{tankId}/fishes/{id}")]
+        public IActionResult Fish(int tankId, int id)
+        {
+            var fish = _context.Fishes.Find(id);
+
+            return View(fish);
+        }
+
+        [Route("~/tanks/{id}/fishadd")]
+        public IActionResult FishAdd(int id)
+        {
+            return View(model: id);
+        }
+
+
         [HttpGet("~/api/tanks")]
         public IEnumerable<Tank> GetTanks()              
         {

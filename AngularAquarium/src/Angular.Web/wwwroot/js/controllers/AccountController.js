@@ -20,7 +20,7 @@
         vm.Login = function (model) {
             var promise = $http.post('/api/accounts/login', model);
             promise.then(function (result) {
-                $window.location.href='/home/user/tanks';
+                $window.location.href='/home/tanks';
             });
         };
         

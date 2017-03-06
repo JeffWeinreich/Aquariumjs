@@ -41,7 +41,7 @@ namespace Aquarium.Controllers
         }
 
         [HttpGet("~/api/tanks/{id}/fishes")]
-        public async Task<IActionResult> GetFish([FromRoute] int id)
+        public async Task<IActionResult> GetFish(int id)
         {
             if (!ModelState.IsValid)
             {
@@ -60,8 +60,28 @@ namespace Aquarium.Controllers
             return Ok(fish);
         }
 
+        [HttpGet("~/api/tanks/{tankId}/fishes/{fishId}")]
+        public async Task<IActionResult> GetSingleFish(int tankId, int fishId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var userId = _userManager.GetUserId(User);
+            var fish = await _context.Fishes
+                .FirstOrDefaultAsync(q => q.Id == fishId);
+
+            if(fish == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(fish);
+        }
+
         [HttpPut("~/api/fishes/{id}")]
-        public async Task<IActionResult> PutFish([FromRoute] int id, [FromBody] Fish fish)
+        public async Task<IActionResult> PutFish(int id, [FromBody] Fish fish)
         {
             if (!ModelState.IsValid)
             {
@@ -98,6 +118,7 @@ namespace Aquarium.Controllers
         }
 
 
+     
         [HttpPost("~/api/tanks/{tankId}/fishes")]
         public async Task<IActionResult> PostFish(int tankId, [FromBody] Fish fish)
         {
@@ -133,7 +154,7 @@ namespace Aquarium.Controllers
         }
 
         [HttpDelete("~/api/fishes/{id}")]
-        public async Task<IActionResult> DeleteFish([FromRoute] int id)
+        public async Task<IActionResult> DeleteFish(int id)
         {
             if(!ModelState.IsValid)
             {

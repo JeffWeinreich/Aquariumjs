@@ -1,7 +1,7 @@
 ﻿
 @section scripts {
     <script src="~/js/controllers/aquariumcontroller.js" type="text/javascript"></script>
-<script src="~/js/controllers/tankcontroller.js" type="text/javascript"></script>
+    <script src="~/js/controllers/tankcontroller.js" type="text/javascript"></script>
 }
 
 
@@ -10,15 +10,21 @@
 
 <body style="background-image:url(http://www.kargs.net/wallpaper/images/water.jpg)">
 
-    <table class="table" ng-controller="AquariumController as aqc" ng-init="aqc.GetInfo('@Model')">
+    <table class="table" ng-controller="AquariumController as aqc" ng-init="aqc.GetInfo('@Model'); aqc.tankId = '@Model'">
         <tbody class="text-center">
             <tr>
                 <td style="font-weight:bolder; font-size:larger; color:aqua">Name</td>
                 <td style="font-weight:bolder; font-size:larger; color:aqua">Type</td>
                 <td style="font-weight:bolder; font-size:larger;color:aqua">Description</td>
             </tr>
-            
+
             <tr ng-repeat="fish in aqc.Fishes">
+                <td>
+                    <a
+                        class="btn btn-link" style="font-weight:bolder;
+                        font-size:large; color:black" href="http://localhost:53298/tanks/{{aqc.tankId}}/fishes/{{fish.id}}">{{fish.name}}
+                    </a>
+                </td>
                 <td style="font-weight:bolder; font-size:large; color: white">{{fish.name}}</td>
                 <td style="font-weight:bolder; font-size:large; color: white">{{fish.type}}</td>
                 <td style="font-weight:bolder; font-size:large; color:white">{{fish.description}}</td>
@@ -33,6 +39,7 @@
 </body>
 
 
-<a class="btn btn-info" href="http://localhost:53298/home/tanks/@Model/fishadd">Add A Fish</a>
+<a class="btn btn-info" href="http://localhost:53298/tanks/@Model/fishadd">Add A Fish</a>
 <a class="btn btn-info" href="http://localhost:53298/home/tanks/">My Tanks</a>
+@*<button class="btn btn-danger pull-right" ng-click="aqc.Clear(fishes)">Remove All Fish</button>*@
 

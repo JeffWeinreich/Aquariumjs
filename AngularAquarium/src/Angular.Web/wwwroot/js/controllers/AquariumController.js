@@ -10,6 +10,7 @@
 
         vm.Fishes = [];
         vm.tank = '';
+        vm.fish = '';
 
 
         vm.GetInfo = function (tankId) {
@@ -21,7 +22,7 @@
             }, function (result) {
                 console.log(result);
             });
-        }
+        };
 
         vm.GetFishes = function() {
             var promise = $http.get('/api/tanks/' + vm.tank.id + '/fishes');
@@ -29,6 +30,24 @@
                 vm.Fishes= result.data;
             });
         };
+
+        vm.GetFishInfo = function (tankId, fishId) {
+            var promise = $http.get('/api/tanks/' + tankId + '/fishes/' + fishId);
+            promise.then(function (result) {
+                console.log(result);
+                vm.fish = (result.data);
+             //   vm.GetFish();
+            }, function (result) {
+                console.log(result);
+            });
+        };
+
+        //vm.GetFish = function () {
+        //    var promise = $http.get('/api/tanks/' + vm.tank.id + '/fish/' + fishId);
+        //    promise.then(function (result) {
+        //        vm.Fishes = result.data;
+        //    });
+        //};
 
         vm.Add = function (fish) {
             var copy = angular.copy(fish);
@@ -60,7 +79,7 @@
         };
 
         vm.Clear = function (fish) {
-           // var url = '/api/fishes/{id}'.replace('{id}', fish.id);
+            // var url = '/api/fishes/{id}'.replace('{id}', fish.id);
             var promise = $http.clear('/api/fishes');
             promise.then(function (result) {
                 var index = vm.Fishes.indexOf(fish);

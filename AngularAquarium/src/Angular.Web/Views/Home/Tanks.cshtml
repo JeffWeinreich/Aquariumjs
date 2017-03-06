@@ -25,9 +25,9 @@
                                 <img src="http://upload.wikimedia.org/wikipedia/commons/7/7f/Fish_tank_(2).jpg" class="img-responsive">
                                 <div class="container">
                                     <div class="carousel-caption">
-                                        <h1>Title</h1>
+                                        <h1>Salt Water</h1>
                                         <p>Description</p>
-                                        <p><a class="btn btn-lg btn-primary" href="#">Add Fish</a>
+                                        <p><button class="btn btn-lg btn-primary" ng-click="tc.AddTank('salt')">Add Fish</button>
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                     <div class="carousel-caption">
                                         <h1>Title</h1>
                                         <p>Description</p>
-                                        <p><a class="btn btn-large btn-primary" href="#">Add Fish</a></p>
+                                        <p><a class="btn btn-large btn-primary" href="http://localhost:53298/home/tankadd">Add Fish</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                     <div class="carousel-caption">
                                         <h1>Title</h1>
                                         <p>Description</p>
-                                        <p><a class="btn btn-large btn-primary" href="#">Add Tank</a></p>
+                                        <p><a class="btn btn-large btn-primary" href="http://localhost:53298/home/tankadd">Add Tank</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -63,19 +63,19 @@
             </div>
         </div>
 
-
-
-
-
         <table class="table" ng-controller="TankController as tc">
             <tbody>
                 <tr ng-repeat="tank in tc.Tanks">
-                    <td style="font-weight:bolder; font-size:x-large; color:black">Tank:</td>
-                    <td style="font-weight:bolder; font-size:large; color:black">{{tank.name}}</td>
+                    <td>
+                    <p>
+                        <a class="btn btn-link" style="font-weight:bolder;
+                                  font-size:large; color:black" href="http://localhost:53298/tanks/{{tank.id}}">{{tank.name}} </a>
+                        </p>
+                    </td>
                     <td>
                         <p>
                             <a class="btn btn-link" style="font-weight:bolder;
-                            font-size:large; color:black" href="http://localhost:53298/home/tanks/{{tank.id}}">Explore Tank &raquo;</a>
+                            font-size:large; color:black" href="http://localhost:53298/tanks/{{tank.id}}">Explore Tank</a>
                         </p>
                     </td>
 

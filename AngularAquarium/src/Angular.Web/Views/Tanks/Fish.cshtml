@@ -1,0 +1,28 @@
+﻿@model Aquarium.Models.Fish
+
+@section scripts {
+    <script src="~/js/controllers/aquariumcontroller.js" type="text/javascript"></script>
+}
+
+
+@{ViewData["Title"] = "Fish";
+}
+
+
+    <table class="table" ng-controller="AquariumController as aqc" ng-init="aqc.GetFishInfo('@Model.TankId','@Model.Id'); aqc.fishId = '@Model'">
+        <tbody>
+            <tr>
+                <td>Name: {{aqc.fish.name}}</td>
+                <td>
+                    <button class="btn btn-danger" ng-click="aqc.Remove(fish)">Remove</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Type: {{aqc.fish.type}}</td>
+            </tr>
+            <tr>
+                <td>Description: {{aqc.fish.description}}</td>
+            </tr>
+            <tr ng-init="fish = {}"></tr>
+        </tbody>
+    </table>
