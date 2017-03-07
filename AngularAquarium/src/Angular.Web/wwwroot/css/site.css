@@ -11,7 +11,7 @@
 }
 
 .navbar-default {
-    background-color: #333 !important ;
+    background-color: #333 !important;
 }
 
 .form-underlined {
@@ -21,36 +21,35 @@
     background: none;
     border: 0;
     border-bottom: solid 1px #000;
-    outline: 0;    
+    outline: 0;
 }
 
 .turtle-background {
-    background-image:url(https://s-media-cache-ak0.pinimg.com/originals/50/10/3e/50103e3bed5d50042f5b82a600c06d0f.jpg);
+    background-image: url(https://s-media-cache-ak0.pinimg.com/originals/50/10/3e/50103e3bed5d50042f5b82a600c06d0f.jpg);
     background-position: center 0;
 }
 
 .stingray-background {
-    background-image:url(http://www.caymanlandandsea.com/photogallery/Stingray%2520Underwater.png);
-    background-repeat:no-repeat;
+    background-image: url(http://www.caymanlandandsea.com/photogallery/Stingray%2520Underwater.png);
+    background-repeat: no-repeat;
     background-size: cover;
-   /*-webkit-filter: saturate(3)*/
 }
 
 .starfish-background {
-    background-image:url(https://www.muralswallpaper.com//app/uploads/orange-starfish-underwater%EF%BB%BF-plain-1.jpg)
+    background-image: url(https://www.muralswallpaper.com//app/uploads/orange-starfish-underwater%EF%BB%BF-plain-1.jpg);
 }
 
 .h4 {
     margin-top: 24px;
 }
 
-.backgound-one {
-    background-image:url(https://s-media-cache-ak0.pinimg.com/originals/01/cf/31/01cf31bf81119e148261f458b1a33a49.jpg);
+.background-one {
+    background-image: url(https://s-media-cache-ak0.pinimg.com/originals/01/cf/31/01cf31bf81119e148261f458b1a33a49.jpg);
 }
 
 .background-two {
-    background-image:url(http://www.chillcover.com/wp-content/uploads/2015/03/Clear-Ocean-Water_Desktop_Background_chillcover.com_.jpg);
-    background-repeat: no-repeat;  
+    background-image: url(http://www.chillcover.com/wp-content/uploads/2015/03/Clear-Ocean-Water_Desktop_Background_chillcover.com_.jpg);
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -65,7 +64,7 @@
 
 
 
-#background {
+.background {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -82,24 +81,24 @@
 
 
 .body {
- padding-bottom: 40px;
- color: #5a5a5a ;
+    padding-bottom: 40px;
+    color: #5a5a5a;
 }
 
 .form-underlined::-webkit-input-placeholder {
-  color: #1e1e1e; 
+    color: #1e1e1e;
 }
 
 .watery-font {
-    font-family: 'Fontdiner Swanky', cursive;   
+    font-family: 'Fontdiner Swanky', cursive;
 }
 
 .lg-text {
-      font-size:7em; 
+    font-size: 7em;
 }
 
 .md-text {
-    font-size:3em;
+    font-size: 5em;
 }
 
 .text-water {
@@ -107,110 +106,137 @@
 }
 
 .sm-shadow {
-    text-shadow:1px 1px 5px;
-}
-.navbar-wrapper {
- position: absolute;
- top: 0;
- left: 0;
- right: 0;
- z-index: 10;
+    text-shadow: 1px 1px 5px;
 }
 
+.navbar-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
 }
 
 .carousel {
- margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 .carousel-caption {
- z-index: 1;
+    z-index: 1;
 }
 
 
 .carousel .item {
- height: 400px;
- /*width: 500px;*/
- background-color:#555;
+    height: 400px;
+    background-color: #555;
 }
-.carousel img  {
- 
- position: center;
- max-height: 100%;
- max-width: 100%;
- top: 0;
- left: 0;
- min-height: 400px; 
+
+.carousel img {
+    position: center;
+    max-height: 100%;
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    min-height: 400px;
 }
 
 .marketing {
- padding-left: 15px;
- padding-right: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 
-.marketing .col-lg-4 {
- text-align: center;
- margin-bottom: 20px;
-}
-.marketing h2 {
- font-weight: normal;
-}
-.marketing .col-lg-4 p {
- margin-left: 10px;
- margin-right: 10px;
-}
+    .marketing .col-lg-4 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .marketing h2 {
+        font-weight: normal;
+    }
+
+    .marketing .col-lg-4 p {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 
 
 .featurette-divider {
- margin: 80px 0;
+    margin: 80px 0;
 }
+
 .featurette {
- padding-top: 120px;
- overflow: hidden; 
+    padding-top: 120px;
+    overflow: hidden;
 }
+
 .featurette-image {
- margin-top: -120px;
+    margin-top: -120px;
 }
 
 
-.featurette-image.pull-left {
- margin-right: 40px;
-}
-.featurette-image.pull-right {
- margin-left: 40px;
-}
+    .featurette-image.pull-left {
+        margin-right: 40px;
+    }
+
+    .featurette-image.pull-right {
+        margin-left: 40px;
+    }
 
 .featurette-heading {
- font-size: 50px;
- font-weight: 300;
- line-height: 1;
- letter-spacing: -1px;
+    font-size: 50px;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -1px;
 }
 
 
-@media (min-width: 768px) {
+.marketing {
+    padding-left: 0;
+    padding-right: 0;
+}
 
- 
- .marketing {
-   padding-left: 0;
-   padding-right: 0;
- }
 
- 
- .navbar-wrapper {
-   margin-top: 20px;
-   margin-bottom: -90px;
- }
- 
- .navbar-wrapper .navbar {
-   border-radius: 4px;
- }
+.navbar-wrapper {
+    margin-top: 20px;
+    margin-bottom: -90px;
+}
 
- 
- .carousel-caption p {
-   margin-bottom: 20px;
-   font-size: 21px;
-   line-height: 1.4;
- }
+    .navbar-wrapper .navbar {
+        border-radius: 4px;
+    }
 
+
+.carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+}
+
+.m-t-2 {
+    margin-top: 20px;
+}
+
+.m-b-0 {
+    margin-bottom: 0;
+}
+
+.table-transparent {
+    background: rgba(255,255,255,.3);
+}
+
+.panel-transparent {
+    background: rgba(255,255,255,.3);
+}
+
+    .panel-transparent .panel-heading {
+        background: rgba(255,255,255,.4);
+    }
+
+.panel-transparent-register {
+    background: rgba(255,255,255,.55);
+}
+
+.panel-transparent-register .panel-heading-register {
+    background: rgba(255,255,255,.7);
+}

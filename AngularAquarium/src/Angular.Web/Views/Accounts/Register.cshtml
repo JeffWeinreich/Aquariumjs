@@ -4,25 +4,28 @@
 
 
 <body class="starfish-background">
-
     <h1 class="text-center watery-font md-text" style="color: #054d71">Welcome To The Aquarium!</h1>
     <div class="row" ng-controller="AccountController as ac" g-cloak>
-        <div class="col-sm-3 col-sm-offset-7">
-            <div class="panel-body" ng-init="user = {}">
-                <h4 class="form-title h4" style="font-weight:bold; color: #054d71">
-                    Register
-                </h4>
-                <form class="login">
-                    <div class="form-group">
-                        <input type="text" style="font-weight:bold" placeholder="Email" class="form-underlined" ng-model="user.email" />
-                    </div>
-                    <div class="form-group">
-                        <input type="password" style="font-weight:bold" placeholder="Password" class="form-underlined" ng-model="user.password" />
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Register" class="btn btn-primary btn-sm pull-right" ng-click="ac.Register(user)" />
-                    </div>
-                </form>
+        <div class="col-sm-4 col-sm-offset-7">
+            <div class="panel panel-transparent-register">
+                <div class="panel-heading panel-heading-register">
+                    <h4 class="panel-title" style="font-weight:bold">
+                        Register
+                    </h4>
+                </div>
+                <div class="panel-body" ng-init="user = {}">
+                    <form class="login">
+                        <div class="form-group">
+                            <input type="text" style="font-weight:bold" placeholder="Email" class="form-underlined" ng-model="user.email" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" style="font-weight:bold" placeholder="Password" class="form-underlined" ng-model="user.password" />
+                        </div>
+                        <div class="form-group m-b-0">
+                            <input type="submit" value="Register" class="btn btn-primary btn-block" ng-click="ac.Register(user)" />
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

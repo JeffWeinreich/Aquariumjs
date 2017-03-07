@@ -3,9 +3,9 @@
 
     application.controller('AquariumController', AquariumController);
 
-    AquariumController.$inject = ['$http'];
+    AquariumController.$inject = ['$http', '$interval'];
 
-    function AquariumController($http) {
+    function AquariumController($http, $interval) {
         var vm = this;          //vm stands for view model, standard practice
 
         vm.Fishes = [];
@@ -36,18 +36,10 @@
             promise.then(function (result) {
                 console.log(result);
                 vm.fish = (result.data);
-             //   vm.GetFish();
             }, function (result) {
                 console.log(result);
             });
         };
-
-        //vm.GetFish = function () {
-        //    var promise = $http.get('/api/tanks/' + vm.tank.id + '/fish/' + fishId);
-        //    promise.then(function (result) {
-        //        vm.Fishes = result.data;
-        //    });
-        //};
 
         vm.Add = function (fish) {
             var copy = angular.copy(fish);
@@ -79,13 +71,25 @@
         };
 
         vm.Clear = function (fish) {
-            // var url = '/api/fishes/{id}'.replace('{id}', fish.id);
             var promise = $http.clear('/api/fishes');
             promise.then(function (result) {
                 var index = vm.Fishes.indexOf(fish);
                 vm.Fishes.splice(index, 1);
             });
         };
+
+        vm.AddShark = function () {
+           vm.Fishes.push({ name: 'Steve the Shark' });
+             $interval(function () {
+                var fish = vm.Fishes[0];
+                vm.Remove(fish);
+             }, 2000, vm.Fishes.length - 1);
+             var promise = $http.post('/api/tanks' + vm.tank.id);
+             promise.then(function (result) {
+                 vm.Fishes.push(result.data);
+             })
+            
+        }
     }
 
 })();

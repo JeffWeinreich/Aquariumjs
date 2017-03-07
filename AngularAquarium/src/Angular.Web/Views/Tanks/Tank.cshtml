@@ -8,7 +8,7 @@
 @{ViewData["Title"] = "Fish";
 }
 
-<body style="background-image:url(http://www.kargs.net/wallpaper/images/water.jpg)">
+<body class="background-four">
 
     <table class="table" ng-controller="AquariumController as aqc" ng-init="aqc.GetInfo('@Model'); aqc.tankId = '@Model'">
         <tbody class="text-center">
@@ -22,7 +22,7 @@
                 <td>
                     <a
                         class="btn btn-link" style="font-weight:bolder;
-                        font-size:large; color:black" href="http://localhost:53298/tanks/{{aqc.tankId}}/fishes/{{fish.id}}">{{fish.name}}
+                        font-size:large; color:black" href="/tanks/{{aqc.tankId}}/fishes/{{fish.id}}">{{fish.name}}
                     </a>
                 </td>
                 <td style="font-weight:bolder; font-size:large; color: white">{{fish.name}}</td>
@@ -32,14 +32,16 @@
                     <button class="btn btn-danger" ng-click="aqc.Remove(fish)">Remove</button>
                 </td>
             </tr>
-            <tr ng-init="fish = {}"></tr>
-
+            <tr>
+                <td>
+                    <button class="btn btn-danger" ng-click="aqc.AddShark()">Add Shark</button>
+                </td>
+            </tr>
         </tbody>
     </table>
+    <a class="btn btn-info" href="/tanks/@Model/fishadd">Add A Fish</a>
+    <a class="btn btn-info" href="/home/tanks/">My Tanks</a>
 </body>
 
 
-<a class="btn btn-info" href="http://localhost:53298/tanks/@Model/fishadd">Add A Fish</a>
-<a class="btn btn-info" href="http://localhost:53298/home/tanks/">My Tanks</a>
-@*<button class="btn btn-danger pull-right" ng-click="aqc.Clear(fishes)">Remove All Fish</button>*@
 
