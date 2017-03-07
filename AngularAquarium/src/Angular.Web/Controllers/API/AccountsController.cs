@@ -32,7 +32,8 @@ namespace Aquarium.Controllers
             return View();
         }
 
-        [HttpPost("~/api/accounts/login")]
+        [HttpPost]
+        [Route("~/api/accounts/login")]
         public async Task<IActionResult> Login([FromBody]LoginRequest model)
         {
 
@@ -59,7 +60,8 @@ namespace Aquarium.Controllers
             return View();
         }
 
-        [HttpPost("~/api/accounts/register")]
+        [HttpPost]
+        [Route("~/api/accounts/register")]
         public async Task<IActionResult> Register([FromBody]RegisterRequest model)
         {
             var user = new ApplicationUser();
@@ -79,7 +81,8 @@ namespace Aquarium.Controllers
 
         }
 
-        [HttpGet("~/accounts/logout")]
+        [HttpGet]
+        [Route("~/accounts/logout")]
         public async Task<IActionResult> Logout()
         {
             await SignInManager.SignOutAsync();
