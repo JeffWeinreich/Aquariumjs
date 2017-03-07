@@ -36,18 +36,10 @@
             promise.then(function (result) {
                 console.log(result);
                 vm.fish = (result.data);
-             //   vm.GetFish();
             }, function (result) {
                 console.log(result);
             });
         };
-
-        //vm.GetFish = function () {
-        //    var promise = $http.get('/api/tanks/' + vm.tank.id + '/fish/' + fishId);
-        //    promise.then(function (result) {
-        //        vm.Fishes = result.data;
-        //    });
-        //};
 
         vm.Add = function (fish) {
             var copy = angular.copy(fish);

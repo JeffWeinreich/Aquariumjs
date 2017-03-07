@@ -176,6 +176,7 @@ namespace Aquarium.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(fish);
+           // return Redirect("~/tanks/");
         }
 
         //[HttpDelete]

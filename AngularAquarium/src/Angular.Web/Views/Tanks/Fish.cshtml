@@ -8,13 +8,13 @@
 @{ViewData["Title"] = "Fish";
 }
 
-
+<body class="background-one">
     <table class="table" ng-controller="AquariumController as aqc" ng-init="aqc.GetFishInfo('@Model.TankId','@Model.Id'); aqc.fishId = '@Model'">
         <tbody>
             <tr>
                 <td>Name: {{aqc.fish.name}}</td>
                 <td>
-                    <button class="btn btn-danger" ng-click="aqc.Remove(fish)">Remove</button>
+                    <a class="btn btn-danger" ng-click="aqc.Remove(aqc.fish)" ng-href="/tanks/{{@Model.TankId}}">Remove</a>
                 </td>
             </tr>
             <tr>
@@ -23,6 +23,11 @@
             <tr>
                 <td>Description: {{aqc.fish.description}}</td>
             </tr>
+            <tr>
+            </tr>
             <tr ng-init="fish = {}"></tr>
         </tbody>
     </table>
+</body>
+
+<a class="btn btn-primary" href="/tanks/{{@Model.TankId}}">Back To Tank</a>
