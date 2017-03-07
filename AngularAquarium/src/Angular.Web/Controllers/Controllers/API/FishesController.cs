@@ -116,9 +116,7 @@ namespace Aquarium.Controllers
             return NoContent();
 
         }
-
-
-     
+    
         [HttpPost("~/api/tanks/{tankId}/fishes")]
         public async Task<IActionResult> PostFish(int tankId, [FromBody] Fish fish)
         {
@@ -133,6 +131,38 @@ namespace Aquarium.Controllers
             fish.Tank = tank;
 
             _context.Fishes.Add(fish);
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException)
+            {
+                if (FishExists(fish.Id))
+                {
+                    return new StatusCodeResult(StatusCodes.Status409Conflict);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtAction("GetFish", new { id = fish.Id }, fish);
+        }
+
+        [HttpPost("~/api/tanks/{tankId}")]
+        public async Task<IActionResult> PostShark(int tankId, [FromBody] Fish fish)
+        {
+            var tank = _context.Tanks.FirstOrDefault(q => q.Id == tankId);
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            fish.Owner = await _userManager.GetUserAsync(User);
+            fish.Tank = tank;
 
             try
             {
@@ -176,23 +206,7 @@ namespace Aquarium.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(fish);
-           // return Redirect("~/tanks/");
         }
-
-        //[HttpDelete]
-        //public async Task<IActionResult> ClearFish([FromRoute] int id)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    var userId = _userManager.GetUserId(User);
-
-        //    Fish fish = _context.Fishes
-        //        .Where(x => x.Owner == userId)
-        //        .ForEachAsync(n => n.Id == id);
-        //}
 
         private bool FishExists(int id)
         {

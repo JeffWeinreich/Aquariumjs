@@ -33,7 +33,6 @@
     background-image: url(http://www.caymanlandandsea.com/photogallery/Stingray%2520Underwater.png);
     background-repeat: no-repeat;
     background-size: cover;
-    /*-webkit-filter: saturate(3)*/
 }
 
 .starfish-background {
@@ -129,7 +128,6 @@
 
 .carousel .item {
     height: 400px;
-    /*width: 500px;*/
     background-color: #555;
 }
 
@@ -234,3 +232,11 @@
     .panel-transparent .panel-heading {
         background: rgba(255,255,255,.4);
     }
+
+.panel-transparent-register {
+    background: rgba(255,255,255,.55);
+}
+
+.panel-transparent-register .panel-heading-register {
+    background: rgba(255,255,255,.7);
+}

@@ -32,14 +32,16 @@
                     <button class="btn btn-danger" ng-click="aqc.Remove(fish)">Remove</button>
                 </td>
             </tr>
-            <tr ng-init="fish = {}"></tr>
-
+            <tr>
+                <td>
+                    <button class="btn btn-danger" ng-click="aqc.AddShark()">Add Shark</button>
+                </td>
+            </tr>
         </tbody>
     </table>
+    <a class="btn btn-info" href="/tanks/@Model/fishadd">Add A Fish</a>
+    <a class="btn btn-info" href="/home/tanks/">My Tanks</a>
 </body>
 
 
-<a class="btn btn-info" href="/tanks/@Model/fishadd">Add A Fish</a>
-<a class="btn btn-info" href="/home/tanks/">My Tanks</a>
-@*<button class="btn btn-danger pull-right" ng-click="aqc.Clear(fishes)">Remove All Fish</button>*@
 
