@@ -4,6 +4,8 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using Aquarium.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace Angular.Web
 {
@@ -11,6 +13,8 @@ namespace Angular.Web
     {
         public static void Main(string[] args)
         {
+
+
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

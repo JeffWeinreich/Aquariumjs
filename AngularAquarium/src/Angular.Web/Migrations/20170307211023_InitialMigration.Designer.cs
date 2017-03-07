@@ -8,14 +8,29 @@ using Aquarium.Data;
 namespace Angular.Web.Migrations
 {
     [DbContext(typeof(AquariumContext))]
-    [Migration("20170223193624_FishiesMigration")]
-    partial class FishiesMigration
+    [Migration("20170307211023_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
+
+            modelBuilder.Entity("Angular.Web.Models.Tank", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("OwnerId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.ToTable("Tanks");
+                });
 
             modelBuilder.Entity("Aquarium.Data.ApplicationUser", b =>
                 {
@@ -76,15 +91,19 @@ namespace Angular.Web.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Image");
-
                     b.Property<string>("Name");
 
-                    b.Property<string>("Owner");
+                    b.Property<string>("OwnerId");
+
+                    b.Property<int>("TankId");
 
                     b.Property<string>("Type");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OwnerId");
+
+                    b.HasIndex("TankId");
 
                     b.ToTable("Fishes");
                 });
@@ -193,6 +212,25 @@ namespace Angular.Web.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("UserTokens");
+                });
+
+            modelBuilder.Entity("Angular.Web.Models.Tank", b =>
+                {
+                    b.HasOne("Aquarium.Data.ApplicationUser", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId");
+                });
+
+            modelBuilder.Entity("Aquarium.Models.Fish", b =>
+                {
+                    b.HasOne("Aquarium.Data.ApplicationUser", "Owner")
+                        .WithMany("Fishes")
+                        .HasForeignKey("OwnerId");
+
+                    b.HasOne("Angular.Web.Models.Tank", "Tank")
+                        .WithMany("Fishes")
+                        .HasForeignKey("TankId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
