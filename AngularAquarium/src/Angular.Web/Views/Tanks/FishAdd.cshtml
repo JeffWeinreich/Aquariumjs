@@ -8,48 +8,47 @@
     <title></title>
 </head>
 <body>
-    <video autoplay loop muted poster="screenshot.jpg" id="background">
+    <video autoplay loop muted class="background">
         <source src="https://static.videezy.com/system/resources/previews/000/003/550/original/fish1.mp4" type="video/mp4" />
     </video>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-sm-6 col-sm-offset-3">
+                <div class="table table-transparent" ng-controller="AquariumController as aqc" ng-init="aqc.tank = @Model" ng-cloak>             
+                    <div @*class="table table-transparent"*@>
+                        @*<div class="table-heading">
+                            <h3 class="table-title text-center">Fish</h3>
+                        </div>*@
+                        <ol class="list-group">
+                            <li class="list-group-item clearfix table-transparent" @*ng-init="fish = {}" *@>
+                                <div class="col-sm-8 table-heading text-center">
+                                    <h3> Fish</h3>
+                                    <div>
+                                        <input type="text" class="form-control" placeholder="Name" ng-model="fish.name" />
+                                    </div>
+                                    <div>
+                                        <input type="text" class="form-control" placeholder="Type" ng-model="fish.type" />
+                                    </div>
+                                    <div>
+                                        <input type="text" class="form-control" placeholder="Description" ng-model="fish.description" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                   
+                                        <button type="button" class="btn btn-primary" ng-click="aqc.Add(fish)">Add your fish</button>
+
+                                        <a class="btn btn-primary" href="/tanks/{{aqc.tank}}">Back to Tank</a>
+                                   
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
-    </div>
 </body>
 </html>
 
 
-<div class="row" ng-controller="AquariumController as aqc" ng-init="aqc.tank = '@Model'" ng-cloak>
-    
-    <div class="col-sm-6 col-sm-offset-3">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Fish</h3>
-            </div>
-            <ol class="list-group">
-                <li class="list-group-item clearfix" @*ng-init="fish = {}"*@>
-                    <div class="col-sm-8">
-                        <div>
-                            <input type="text" class="form-control" placeholder="Name" ng-model="fish.name" />
-                        </div>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Type" ng-model="fish.type" />
-                        </div>
-                        <div>
-                            <input type="text" class="form-control" placeholder="Description" ng-model="fish.description" />
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-primary" ng-click="aqc.Add(fish)">Add your fish</button>
-                        <p> </p>
-                        <a class="btn btn-primary" href="/tanks/{{aqc.tank}}">Back to Tank</a>
-
-                    </div>
-                    
-                </li>
-            </ol>
-        </div>
-    </div>
-</div>
+<

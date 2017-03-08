@@ -8,26 +8,41 @@
 @{ViewData["Title"] = "Fish";
 }
 
-<body class="background-one">
-    <table class="table" ng-controller="AquariumController as aqc" ng-init="aqc.GetFishInfo('@Model.TankId','@Model.Id'); aqc.fishId = '@Model'">
-        <tbody>
-            <tr>
-                <td>Name: {{aqc.fish.name}}</td>
-                <td>
-                    <a class="btn btn-danger" ng-click="aqc.Remove(aqc.fish)" ng-href="/tanks/{{@Model.TankId}}">Remove</a>
-                </td>
-            </tr>
-            <tr>
-                <td>Type: {{aqc.fish.type}}</td>
-            </tr>
-            <tr>
-                <td>Description: {{aqc.fish.description}}</td>
-            </tr>
-            <tr>
-            </tr>
-            <tr ng-init="fish = {}"></tr>
-        </tbody>
-    </table>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <video autoplay loop muted class="background">
+        <source src="https://static.videezy.com/system/resources/previews/000/002/459/original/moon-jellies-hd-stock-video.mp4" type="video/mp4" />
+    </video>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5 col-sm-offset-4">
+           
+                <table class="table table-transparent" ng-controller="AquariumController as aqc" ng-init="aqc.GetFishInfo(@Model.TankId,@Model.Id);">
+                    <tbody>
+                        <tr>
+                            <td>Name: {{aqc.fish.name}}</td>                      
+                        </tr>
+                        <tr>
+                            <td>Type: {{aqc.fish.type}}</td>
+                        </tr>
+                        <tr>
+                            <td>Description: {{aqc.fish.description}}</td>
+                        </tr>
+                        <tr ng-init="fish = {}">
+                            <td>
+                                <a class="btn btn-primary" href="/tanks/{{aqc.tank}}">Back To Tank</a>
+                                <a class="btn btn-danger; pull-right" ng-click="aqc.Remove(aqc.fish)" ng-href="/tanks/{{@Model.TankId}}">Remove</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
+</html>
 
-<a class="btn btn-primary" href="/tanks/{{@Model.TankId}}">Back To Tank</a>

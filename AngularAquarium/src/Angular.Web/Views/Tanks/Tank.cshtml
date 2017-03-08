@@ -8,40 +8,38 @@
 @{ViewData["Title"] = "Fish";
 }
 
-<body class="background-four">
-
-    <table class="table" ng-controller="AquariumController as aqc" ng-init="aqc.GetInfo('@Model'); aqc.tankId = '@Model'">
-        <tbody class="text-center">
-            <tr>
-                <td style="font-weight:bolder; font-size:larger; color:aqua">Name</td>
-                <td style="font-weight:bolder; font-size:larger; color:aqua">Type</td>
-                <td style="font-weight:bolder; font-size:larger;color:aqua">Description</td>
-            </tr>
-
-            <tr ng-repeat="fish in aqc.Fishes">
-                <td>
-                    <a
-                        class="btn btn-link" style="font-weight:bolder;
-                        font-size:large; color:black" href="/tanks/{{aqc.tankId}}/fishes/{{fish.id}}">{{fish.name}}
-                    </a>
-                </td>
-                <td style="font-weight:bolder; font-size:large; color: white">{{fish.name}}</td>
-                <td style="font-weight:bolder; font-size:large; color: white">{{fish.type}}</td>
-                <td style="font-weight:bolder; font-size:large; color:white">{{fish.description}}</td>
-                <td>
-                    <button class="btn btn-danger" ng-click="aqc.Remove(fish)">Remove</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button class="btn btn-danger" ng-click="aqc.AddShark()">Add Shark</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a class="btn btn-info" href="/tanks/@Model/fishadd">Add A Fish</a>
-    <a class="btn btn-info" href="/home/tanks/">My Tanks</a>
+<body>
+    <video autoplay loop muted class="background">
+        <source src="https://static.videezy.com/system/resources/previews/000/003/282/original/Undersea_Exotic_Fish_Free_HD_Footage.mp4" type="video/mp4" />
+    </video>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <table class="table m-t-2 table-transparent text-center table-hover" ng-controller="AquariumController as aqc" ng-init="aqc.GetInfo('@Model'); aqc.tankId = '@Model'">
+                    <tbody>
+                        <tr ng-repeat="fish in aqc.Fishes">
+                            <td>
+                                <a class="btn btn-link" style="font-weight:bolder;
+                        font-size:large; color:black" href="/tanks/{{aqc.tankId}}/fishes/{{fish.id}}">{{fish.name}}</a>
+                           
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a class="btn btn-info" href="~/tanks/@Model/fishadd">Add A Fish</a>
+                                <button class="btn btn-danger" ng-click="aqc.AddShark()">Add Shark</button>
+                                <a class="btn btn-info" href="~/home/tanks/">My Tanks</a>
+                            </td>
+                        </tr>
+                    </tbody>                  
+                </table>                                 
+                                   
+            </div> 
+        </div>
+    </div>
 </body>
+
+
 
 
 
