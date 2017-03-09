@@ -24,10 +24,10 @@
             });
         };
 
-        vm.GetFishes = function() {
+        vm.GetFishes = function () {
             var promise = $http.get('/api/tanks/' + vm.tank.id + '/fishes');
             promise.then(function (result) {
-                vm.Fishes= result.data;
+                vm.Fishes = result.data;
             });
         };
 
@@ -45,12 +45,9 @@
             var copy = angular.copy(fish);
             fish.name = '';
             fish.type = '';
-            fish.quantity = '';
             fish.description = '';
-            
 
-
-            var promise = $http.post('/api/tanks/' + vm.tank + '/fishes', copy);   
+            var promise = $http.post('/api/tanks/' + vm.tank + '/fishes', copy);
             promise.then(function (result) {
                 //success
                 vm.Fishes.push(result.data);
@@ -79,7 +76,7 @@
         };
 
         vm.AddShark = function () {
-            vm.Fishes.push({ name: 'Steve the Shark' });
+           vm.Fishes.push({ name: 'Steve the Shark', type: 'Great White', description: 'Eats all Fish' });
             $interval(function () {
                 var fish = vm.Fishes[0];
                 vm.Remove(fish);
@@ -87,9 +84,10 @@
             var promise = $http.post('/api/tanks' + vm.tank.id);
             promise.then(function (result) {
                 vm.Fishes.push(result.data);
-            });
 
-        };
+            })
+
+        }
     }
 
 })();

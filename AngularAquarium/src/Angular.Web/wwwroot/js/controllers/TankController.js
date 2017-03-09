@@ -19,15 +19,9 @@
             });
         };
 
-        //vm.AddTank = function (type) {
-        //    var promise = $http.post('/api/tank/' + type, null);
-
-        //}
-
         vm.Add = function (tank) {
             var copy = angular.copy(tank);
             tank.name = '';
-
 
             var promise = $http.post('/api/tanks' , copy);
             promise.then(function (result) {

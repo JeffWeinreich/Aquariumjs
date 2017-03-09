@@ -54,14 +54,16 @@ namespace Angular.Web.Controllers.Controllers.API
         }
 
 
-        [HttpGet("~/api/tanks")]
+        [HttpGet]
+        [Route("~/api/tanks")]
         public IEnumerable<Tank> GetTanks()              
         {
             var userId = _userManager.GetUserId(User);
             return _context.Tanks.Where(q => q.OwnerId == userId).ToList();
         }
 
-        [HttpGet("~/api/tanks/{id}")]
+        [HttpGet]
+        [Route("~/api/tanks/{id}")]
         public async Task<IActionResult> GetTank(int id)            
         {
             if (!ModelState.IsValid)
@@ -81,7 +83,8 @@ namespace Angular.Web.Controllers.Controllers.API
             return Ok(tank);
         }
 
-        [HttpPut("~/api/tanks/{id}")]
+        [HttpPut]
+        [Route("~/api/tanks/{id}")]
         public async Task<IActionResult> PutTank(int id, [FromBody] Tank tank)
         {
             if (!ModelState.IsValid)
@@ -117,7 +120,8 @@ namespace Angular.Web.Controllers.Controllers.API
 
         }
 
-        [HttpPost("~/api/tanks")]
+        [HttpPost]
+        [Route("~/api/tanks")]
         public async Task<IActionResult> PostTank([FromBody] Tank tank)
         {
             if (!ModelState.IsValid)
@@ -133,7 +137,8 @@ namespace Angular.Web.Controllers.Controllers.API
             return CreatedAtAction("GetTank", new { id = tank.Id }, tank);
         }
 
-        [HttpDelete("~/api/tanks/{id}")]
+        [HttpDelete]
+        [Route("~/api/tanks/{id}")]
         public async Task<IActionResult> DeleteTank(int id)
         {
             if (!ModelState.IsValid)
