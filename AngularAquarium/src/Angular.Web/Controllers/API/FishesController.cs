@@ -33,14 +33,16 @@ namespace Aquarium.Controllers
             return View();
         }
 
-        [HttpGet("~/api/fishes")]
+        [HttpGet]
+        [Route("~/api/fishes")]
         public IEnumerable<Fish> GetFish()
         {
             var userId = _userManager.GetUserId(User);
             return _context.Fishes.Where(q => q.OwnerId == userId).ToList();
         }
 
-        [HttpGet("~/api/tanks/{id}/fishes")]
+        [HttpGet]
+        [Route("~/api/tanks/{id}/fishes")]
         public async Task<IActionResult> GetFish(int id)
         {
             if (!ModelState.IsValid)
@@ -60,7 +62,8 @@ namespace Aquarium.Controllers
             return Ok(fish);
         }
 
-        [HttpGet("~/api/tanks/{tankId}/fishes/{fishId}")]
+        [HttpGet]
+        [Route("~/api/tanks/{tankId}/fishes/{fishId")]
         public async Task<IActionResult> GetSingleFish(int tankId, int fishId)
         {
             if (!ModelState.IsValid)
@@ -80,7 +83,8 @@ namespace Aquarium.Controllers
             return Ok(fish);
         }
 
-        [HttpPut("~/api/fishes/{id}")]
+        [HttpPut]
+        [Route("~/api/fishes/{id}")]
         public async Task<IActionResult> PutFish(int id, [FromBody] Fish fish)
         {
             if (!ModelState.IsValid)
@@ -117,7 +121,8 @@ namespace Aquarium.Controllers
 
         }
     
-        [HttpPost("~/api/tanks/{tankId}/fishes")]
+        [HttpPost]
+        [Route("~/api/tanks/{tankId}/fishes")]
         public async Task<IActionResult> PostFish(int tankId, [FromBody] Fish fish)
         {
             var tank = _context.Tanks.FirstOrDefault(q => q.Id == tankId);
@@ -151,7 +156,8 @@ namespace Aquarium.Controllers
             return CreatedAtAction("GetFish", new { id = fish.Id }, fish);
         }
 
-        [HttpPost("~/api/tanks/{tankId}")]
+        [HttpPost]
+        [Route("~/api/tanks/{tankId}")]
         public async Task<IActionResult> PostShark(int tankId, [FromBody] Fish fish)
         {
             var tank = _context.Tanks.FirstOrDefault(q => q.Id == tankId);
@@ -183,7 +189,8 @@ namespace Aquarium.Controllers
             return CreatedAtAction("GetFish", new { id = fish.Id }, fish);
         }
 
-        [HttpDelete("~/api/fishes/{id}")]
+        [HttpDelete]
+        [Route("~/api/fishes/{id}")]
         public async Task<IActionResult> DeleteFish(int id)
         {
             if(!ModelState.IsValid)
