@@ -79,17 +79,17 @@
         };
 
         vm.AddShark = function () {
-           vm.Fishes.push({ name: 'Steve the Shark' });
-             $interval(function () {
+            vm.Fishes.push({ name: 'Steve the Shark' });
+            $interval(function () {
                 var fish = vm.Fishes[0];
                 vm.Remove(fish);
-             }, 2000, vm.Fishes.length - 1);
-             var promise = $http.post('/api/tanks' + vm.tank.id);
-             promise.then(function (result) {
-                 vm.Fishes.push(result.data);
-             })
-            
-        }
+            }, 2000, vm.Fishes.length - 1);
+            var promise = $http.post('/api/tanks' + vm.tank.id);
+            promise.then(function (result) {
+                vm.Fishes.push(result.data);
+            });
+
+        };
     }
 
 })();
