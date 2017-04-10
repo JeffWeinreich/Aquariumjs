@@ -63,7 +63,7 @@ namespace Aquarium.Controllers
         }
 
         [HttpGet]
-        [Route("~/api/tanks/{tankId}/fishes/{fishId")]
+        [Route("~/api/tanks/{tankId}/fishes/{fishId}")]
         public async Task<IActionResult> GetSingleFish(int tankId, int fishId)
         {
             if (!ModelState.IsValid)
@@ -126,7 +126,7 @@ namespace Aquarium.Controllers
         public async Task<IActionResult> PostFish(int tankId, [FromBody] Fish fish)
         {
             var tank = _context.Tanks.FirstOrDefault(q => q.Id == tankId);
-
+            
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

@@ -77,6 +77,10 @@
     transform: translateX(-50%) translateY(-50%);
     background-size: cover;
 }
+.gold-text{
+   /*color: #ffd4b6;*/
+   color: #ffe8c8
+}
 
 
 .body {
@@ -119,6 +123,7 @@
 .m-t-1 {
     margin-top: 10px;
 }
+
 
 .m-t-2 {
     margin-top: 20px;
